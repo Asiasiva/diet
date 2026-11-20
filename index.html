@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>30 நாள் கர்ப்பகால உணவு அட்டவணை</title>
 <link rel="manifest" id="dynamicManifest">
-<meta name="theme-color" content="#23845b">
+<meta name="theme-color" content="#1b6b4c">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -13,306 +13,395 @@
 <link rel="apple-touch-icon" id="appleIcon">
 <style>
 :root{
---bg:#f4f7f5;--card:#fff;--text:#20332a;
---muted:#718078;--green:#23845b;--soft:#e8f5ed;
---line:#e4ebe6;--orange:#fff2df;--blue-soft:#eef6fb;--blue:#1b6ca8
+--bg:#f6f8f6;--card:#ffffff;--text:#1d2e26;
+--muted:#5e7067;--green:#1b6b4c;--green-light:#2a8c66;
+--soft:#e9f5ef;--soft-border:#cde7da;--line:#e3ebe6;
+--orange:#fff8eb;--orange-border:#f3deb8;--blue-soft:#eef6fb;--blue-border:#cde3f2
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
 margin:0;background:var(--bg);color:var(--text);
-font-family:"Noto Sans Tamil",Arial,sans-serif;line-height:1.65
+font-family:"Noto Sans Tamil",system-ui,-apple-system,sans-serif;line-height:1.65
 }
-header{
-background:linear-gradient(135deg,#176b49,#36a477);
-color:white;padding:22px 17px 18px;text-align:center
+.top-reminder-banner{
+background:linear-gradient(135deg,#13543b 0%,#1b6b4c 60%,#288561 100%);
+color:white;padding:20px 18px 22px;
+border-bottom-left-radius:22px;border-bottom-right-radius:22px;
+box-shadow:0 6px 20px rgba(19,84,59,0.16)
 }
-header h1{font-size:22px;margin:0 0 6px}
-header p{font-size:13px;margin:0;opacity:.9}
-
-/* Top Tabs */
-.nav-tabs{
-display:flex;gap:8px;max-width:760px;margin:14px auto 0;padding:0 15px
+.top-reminder-inner{max-width:760px;margin:auto}
+.top-reminder-meta{
+display:flex;justify-content:space-between;align-items:center;
+gap:8px;flex-wrap:wrap;margin-bottom:8px
 }
-.tab-btn{
-flex:1;background:var(--card);color:var(--text);
-border:1px solid var(--line);padding:11px 10px;border-radius:12px;
-font-size:14px;font-weight:bold;cursor:pointer;transition:0.2s;
-box-shadow:0 2px 6px rgba(0,0,0,0.03)
+.top-reminder-badge{
+display:inline-block;background:rgba(255,255,255,0.18);
+padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:700
 }
-.tab-btn.active{
-background:var(--green);color:white;border-color:var(--green)
+.top-reminder-sub{
+font-size:12px;opacity:.9;font-weight:600
 }
-
-.container{max-width:760px;margin:auto;padding:15px}
+.top-reminder-banner h2{
+margin:0 0 6px;font-size:17px;font-weight:700;color:#ffffff
+}
+.top-reminder-banner p{
+margin:0;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.96)
+}
+.container{max-width:760px;margin:auto;padding:16px}
 .notice{
-background:var(--orange);border:1px solid #f1dfbf;
-padding:13px;border-radius:13px;font-size:13px;margin-bottom:15px
+background:var(--orange);border:1px solid var(--orange-border);
+padding:13px 15px;border-radius:14px;font-size:13px;margin-bottom:16px;
+color:#5c4314;display:flex;gap:10px;align-items:flex-start
+}
+.notice-icon{font-size:18px;line-height:1.4}
+.tabs{
+display:flex;gap:8px;margin-bottom:16px;
+background:#e8efe9;padding:5px;border-radius:14px
+}
+.tabs button{
+flex:1;padding:11px 12px;font-weight:700;border-radius:10px;
+font-size:14px;transition:all 0.2s ease
+}
+.tabs button.active{
+background:var(--card);color:var(--green);
+box-shadow:0 2px 8px rgba(0,0,0,0.06)
+}
+.tabs button.inactive{
+background:transparent;color:var(--muted);border:none
 }
 .selector{
-background:var(--card);padding:14px;border-radius:14px;
-box-shadow:0 3px 12px #00000008;margin-bottom:15px
+background:var(--card);padding:16px;border-radius:16px;
+box-shadow:0 4px 16px rgba(20,50,35,0.05);
+border:1px solid var(--line);margin-bottom:18px
 }
-.selector label{font-weight:bold;display:block;margin-bottom:8px;font-size:14px}
+.selector label{font-weight:700;display:block;margin-bottom:8px;font-size:14px;color:var(--text)}
 select{
-width:100%;padding:12px;border:1px solid var(--line);
-border-radius:10px;font-size:16px;background:white;color:var(--text)
+width:100%;padding:12px 14px;border:1.5px solid var(--line);
+border-radius:11px;font-size:15px;background:#fbfdfb;color:var(--text);
+font-weight:600;outline:none
 }
-
-/* Today Quick Controls */
-.today-bar{
-display:flex;gap:8px;margin-top:10px;flex-wrap:wrap
+select:focus{border-color:var(--green)}
+.diet-mode-bar{
+display:flex;gap:7px;margin-bottom:14px
 }
-.btn-today{
-flex:2;background:var(--soft);color:var(--green);
-border:1px solid #bfe0cc;font-weight:bold;font-size:13.5px;padding:9px 12px
+.diet-mode-bar button{
+flex:1;padding:9px 8px;font-size:12.5px;font-weight:600;border-radius:10px
 }
-.btn-set-start{
-flex:1;background:#f8faf9;color:var(--text);
-border:1px solid var(--line);font-size:12.5px;padding:9px 10px
+.auto-day-info{
+display:flex;justify-content:space-between;align-items:center;
+gap:8px;flex-wrap:wrap;margin-top:10px;padding-top:10px;
+border-top:1px dashed var(--line);font-size:12px;color:var(--muted)
 }
-.start-info{
-font-size:12px;color:var(--muted);margin-top:8px;text-align:center
+.auto-day-info button{
+padding:5px 10px;font-size:11.5px;border-radius:8px
 }
-
+.prep-card{
+background:var(--blue-soft);border:1px solid var(--blue-border);
+border-radius:14px;padding:13px 15px;margin-bottom:14px;font-size:13px;color:#1d425c
+}
+.prep-card h3{margin:0 0 4px;font-size:14px;color:#14364d}
+.prep-card p{margin:0;line-height:1.55}
 .day-title{
 display:flex;justify-content:space-between;align-items:center;
-margin:18px 2px 12px
+margin:18px 2px 14px;flex-wrap:wrap;gap:8px
 }
-.day-title h2{font-size:21px;margin:0}
+.day-title h2{font-size:20px;margin:0;color:var(--text)}
 .tag{
-background:var(--soft);color:var(--green);
-border-radius:20px;padding:5px 11px;font-size:12px
+background:var(--soft);color:var(--green);border:1px solid var(--soft-border);
+border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600
 }
 .meal{
 display:flex;gap:12px;background:var(--card);
-border:1px solid var(--line);border-radius:13px;
-padding:13px;margin-bottom:9px;
-cursor:pointer;transition:all 0.2s ease;align-items:flex-start
+border:1px solid var(--line);border-radius:16px;
+padding:14px;margin-bottom:11px;
+box-shadow:0 2px 10px rgba(20,50,35,0.03);
+transition:border-color 0.2s ease,background 0.2s ease
 }
-.meal:hover{
-border-color:var(--green);
-box-shadow:0 3px 10px rgba(35,132,91,0.1);
+.meal.done{
+background:#f2faf5;border-color:#b8dec9
 }
-.meal:active{transform:scale(0.99)}
-.meal-content{flex:1}
-.meal-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.recipe-hint{
-font-size:11px;color:var(--green);background:var(--soft);
-padding:2px 8px;border-radius:12px;white-space:nowrap;font-weight:bold
+.meal-icon-box{
+width:42px;height:42px;border-radius:12px;background:var(--soft);
+display:flex;align-items:center;justify-content:center;
+font-size:21px;flex-shrink:0
 }
-.time{
-min-width:68px;color:var(--green);
-font-weight:bold;font-size:13px;padding-top:2px
+.meal-body{flex:1;min-width:0}
+.meal-top{
+display:flex;justify-content:space-between;align-items:center;
+gap:8px;margin-bottom:4px;flex-wrap:wrap
 }
-.meal h3{font-size:15px;margin:0 0 3px}
-.meal p{font-size:13px;color:var(--muted);margin:0}
-.emoji{font-size:22px;min-width:27px}
+.meal-right-meta{display:flex;align-items:center;gap:8px}
+.time-badge{
+background:#f0f5f2;color:var(--green);
+font-weight:700;font-size:11.5px;padding:2px 8px;border-radius:6px
+}
+.done-check{
+width:18px;height:18px;accent-color:var(--green);cursor:pointer;margin:0
+}
+.meal h3{font-size:15px;margin:0;color:var(--text)}
+.meal.done h3{text-decoration:line-through;color:var(--muted)}
+.meal p{font-size:13.5px;color:var(--muted);margin:4px 0 0;line-height:1.55}
+.meal-btn-row{
+display:flex;gap:8px;flex-wrap:wrap;margin-top:9px
+}
+.recipe-btn{
+display:inline-flex;align-items:center;gap:5px;
+padding:6px 12px;font-size:12px;font-weight:600;
+background:var(--soft);color:var(--green);
+border:1px solid var(--soft-border);border-radius:8px
+}
+.recipe-btn:active{transform:scale(0.98)}
 .walk{
-background:var(--soft);border:1px solid #cfe8d8;
-border-radius:13px;padding:14px;margin:12px 0
+background:linear-gradient(to right,#e9f5ef,#f2f9f5);
+border:1px solid var(--soft-border);
+border-radius:15px;padding:14px 16px;margin:14px 0;
+display:flex;gap:12px;align-items:flex-start
 }
-.walk h3{margin:0 0 4px;color:var(--green);font-size:15px}
-.walk p{margin:0;font-size:13px}
+.walk-icon{font-size:22px;line-height:1.3}
+.walk h3{margin:0 0 3px;color:var(--green);font-size:15px}
+.walk p{margin:0;font-size:13px;color:#344b40}
 .tip{
-background:white;border:1px solid var(--line);
-border-radius:13px;padding:14px;margin-top:15px;font-size:13px
+background:var(--card);border:1px solid var(--line);
+border-radius:15px;padding:15px;margin-top:14px;font-size:13.5px;
+box-shadow:0 2px 8px rgba(0,0,0,0.02)
 }
-.tip h3{margin:0 0 7px;font-size:15px}
+.tip h3{margin:0 0 8px;font-size:15px;color:var(--green)}
+.tip-grid{
+display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px
+}
+@media(min-width:640px){
+.tip-grid{grid-template-columns:1fr 1fr}
+}
+.tip-grid .tip{margin-top:0}
 button{
 border:0;background:var(--green);color:white;
-padding:10px 15px;border-radius:9px;font-size:14px;cursor:pointer
+padding:10px 15px;border-radius:10px;font-size:14px;cursor:pointer;font-weight:600
 }
-.actions{display:flex;gap:8px;margin-top:10px}
+button.secondary{
+background:var(--soft);color:var(--green);border:1px solid var(--soft-border)
+}
+.actions{display:flex;gap:8px;margin-top:12px}
 .actions button{flex:1}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
-
-/* Grocery List Styles */
-.grocery-header{
-background:var(--card);padding:15px;border-radius:14px;
-border:1px solid var(--line);margin-bottom:14px;
-display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px
+.grocery-controls{
+display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap
 }
-.grocery-stats{font-size:14px;font-weight:bold;color:var(--green)}
-.btn-reset{
-background:#fff0f0;color:#c0392b;border:1px solid #f5c6cb;
-padding:7px 12px;font-size:12.5px;border-radius:8px
-}
-.grocery-cat{
+.grocery-controls button{flex:1;font-size:13px;padding:10px}
+.grocery-group{
 background:var(--card);border:1px solid var(--line);
-border-radius:14px;padding:14px;margin-bottom:12px
+border-radius:15px;padding:14px;margin-bottom:11px;
+box-shadow:0 2px 8px rgba(0,0,0,0.02)
 }
-.grocery-cat h3{
-margin:0 0 10px;font-size:15.5px;color:var(--green);
-border-bottom:1px solid var(--line);padding-bottom:6px
+.grocery-group h3{
+margin:0 0 10px;font-size:15px;color:var(--green);
+border-bottom:1px solid var(--line);padding-bottom:7px
 }
-.g-item{
-display:flex;align-items:center;gap:10px;padding:8px 4px;
-border-bottom:1px dashed #eef2ef;cursor:pointer;font-size:14px
+.grocery-item{
+display:flex;align-items:center;gap:10px;
+padding:8px 2px;border-bottom:1px dashed #ebf1ed;cursor:pointer;font-size:14px
 }
-.g-item:last-child{border-bottom:none}
-.g-item input[type="checkbox"]{
-width:19px;height:19px;accent-color:var(--green);cursor:pointer;flex-shrink:0
+.grocery-item:last-child{border-bottom:none}
+.grocery-item input[type="checkbox"]{
+width:18px;height:18px;accent-color:var(--green);cursor:pointer
 }
-.g-item.checked span{
+.grocery-item.checked span{
 text-decoration:line-through;color:var(--muted)
 }
+.copy-msg{
+font-size:12.5px;color:var(--green);text-align:center;
+margin-top:6px;min-height:18px;font-weight:700
+}
+.meta-pill.symptom{
+background:var(--orange);color:#755214;border:1px solid var(--orange-border);
+padding:3px 8px;border-radius:6px;font-weight:600;font-size:11.5px
+}
 
-/* Modal Styles for Recipe */
-.modal-overlay{
-display:none;position:fixed;inset:0;background:rgba(16,28,22,0.65);
-z-index:1000;align-items:center;justify-content:center;padding:15px;
-backdrop-filter:blur(2px)
+/* Modal */
+.modal-backdrop{
+position:fixed;inset:0;background:rgba(15,35,26,0.55);
+backdrop-filter:blur(3px);display:none;align-items:flex-end;
+justify-content:center;z-index:1000;padding:0
 }
-.modal-overlay.open{display:flex}
-.modal-box{
-background:var(--card);max-width:540px;width:100%;max-height:86vh;
-border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
-box-shadow:0 12px 32px rgba(0,0,0,0.2);animation:popIn 0.2s ease
+.modal-backdrop.open{display:flex}
+.modal-sheet{
+background:var(--card);width:100%;max-width:640px;
+max-height:88vh;overflow-y:auto;
+border-top-left-radius:22px;border-top-right-radius:22px;
+padding:20px 18px 26px;box-shadow:0 -8px 30px rgba(0,0,0,0.18);
+animation:slideUp 0.22s ease-out
 }
-@keyframes popIn{
-from{opacity:0;transform:translateY(12px) scale(0.97)}
-to{opacity:1;transform:translateY(0) scale(1)}
+@keyframes slideUp{
+from{transform:translateY(30px);opacity:0}
+to{transform:translateY(0);opacity:1}
 }
-.modal-head{
-background:linear-gradient(135deg,#176b49,#36a477);
-color:white;padding:15px 18px;display:flex;justify-content:space-between;align-items:center
+.modal-header{
+display:flex;justify-content:space-between;align-items:flex-start;
+gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px
 }
-.modal-head h3{margin:0;font-size:17px;line-height:1.4}
-.close-btn{
-background:rgba(255,255,255,0.2);color:white;border:none;
+.modal-header h3{margin:0;font-size:17.5px;color:var(--green)}
+.modal-close{
+background:#f0f4f2;color:var(--text);border:none;
 width:32px;height:32px;border-radius:50%;font-size:18px;
-display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer
+display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0
 }
-.modal-body{padding:18px;overflow-y:auto;font-size:14px}
-.recipe-food-title{
-font-size:16px;font-weight:bold;color:var(--green);
-background:var(--soft);padding:10px 12px;border-radius:10px;margin-bottom:14px
+.recipe-specs{
+display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px
 }
-.recipe-sec-title{
-font-size:14px;font-weight:bold;color:var(--text);
-margin:14px 0 6px;border-bottom:1px solid var(--line);padding-bottom:4px
+.spec-box{
+background:#f6faf7;border:1px solid var(--line);border-radius:10px;
+padding:8px;text-align:center
 }
-.recipe-list{margin:0;padding-left:20px}
-.recipe-list li{margin-bottom:6px;line-height:1.6}
-.swap-box{
-background:var(--blue-soft);border:1px solid #cce3f2;
-padding:10px 12px;border-radius:10px;font-size:13px;margin-top:14px;color:#144970
+.spec-box span{display:block;font-size:11px;color:var(--muted)}
+.spec-box b{display:block;font-size:12.5px;color:var(--text);margin-top:2px}
+.recipe-block{margin-bottom:14px}
+.recipe-block h4{
+margin:0 0 6px;font-size:14px;color:var(--text);
+display:flex;align-items:center;gap:6px
 }
-.recipe-note{
-background:var(--orange);border:1px solid #f1dfbf;
-padding:10px 12px;border-radius:10px;font-size:12.5px;margin-top:10px
+.recipe-block ul, .recipe-block ol{
+margin:0;padding-left:20px;font-size:13.5px;color:#33463d
 }
-.modal-foot{
-padding:12px 18px;border-top:1px solid var(--line);text-align:right;background:#fafcfb
+.recipe-block li{margin-bottom:6px}
+.sub-box{
+background:#fffaf0;border:1px solid #f2dfb6;border-radius:11px;
+padding:11px 13px;font-size:13px;color:#634712;margin-bottom:12px;line-height:1.55
 }
-
+.recipe-safety{
+background:var(--soft);border:1px solid var(--soft-border);
+border-radius:11px;padding:11px 13px;font-size:12.5px;color:#1b4d38
+}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px}
+@media(min-width:640px){
+.modal-backdrop{align-items:center;padding:16px}
+.modal-sheet{border-radius:20px}
+}
 @media print{
-header{background:#176b49!important;color:white!important}
-.nav-tabs,.selector,.actions,.recipe-hint,.modal-overlay,.btn-reset{display:none!important}
+.top-reminder-banner{background:#176b49!important;color:white!important;border-radius:0}
+.selector,.actions,.tabs,.grocery-controls,.diet-mode-bar,.recipe-btn,.modal-backdrop,.done-check,.auto-day-info button{display:none!important}
 body{background:white}
 .container{max-width:100%}
-.meal,.walk,.tip,.grocery-cat{break-inside:avoid}
+.meal,.walk,.tip,.grocery-group{break-inside:avoid;box-shadow:none}
 }
 </style>
 </head>
 <body>
 
-<header>
-<h1>30 நாள் கர்ப்பகால உணவு அட்டவணை</h1>
-<p>சிறுதானியங்கள் • பாரம்பரிய அரிசி • சத்தான உணவு</p>
-</header>
-
-<div class="nav-tabs">
-  <button class="tab-btn active" id="tabDietBtn" onclick="switchTab('diet')">📅 உணவு அட்டவணை</button>
-  <button class="tab-btn" id="tabGroceryBtn" onclick="switchTab('grocery')">🛒 மளிகைப் பட்டியல்</button>
+<section class="top-reminder-banner" id="topReminderBanner">
+<div class="top-reminder-inner">
+<div class="top-reminder-meta">
+<span class="top-reminder-badge" id="topReminderDayBadge">💚 நாள் 1 / 30 • இன்றைய நினைவூட்டல்</span>
+<span class="top-reminder-sub" id="topStartDateText"></span>
 </div>
+<h2 id="topReminderHeading">இன்றைய நினைவூட்டல்</h2>
+<p id="topReminderText"></p>
+</div>
+</section>
 
-<!-- TAB 1: DIET SCHEDULE -->
-<div class="container" id="dietSection">
+<div class="container">
 
 <div class="notice">
+<div class="notice-icon">⚠️</div>
+<div>
 <b>முக்கிய குறிப்பு:</b>
-இது எடை குறைக்கும் உணவுமுறை அல்ல. கர்ப்பகாலத்தில் பட்டினி இருக்கவோ,
-உணவைத் தவிர்க்கவோ வேண்டாம். தற்போதைய எடை உயர்வைக் கருத்தில் கொண்டு
-மகப்பேறு மருத்துவர் அல்லது ஊட்டச்சத்து நிபுணரிடம் இந்த உணவு அட்டவணையை
-உறுதிப்படுத்துங்கள்.
+ராகவி உணவருந்து வில்லையென்றால் மட்டும் உடல் எடை குறையாது, மாறாக சத்துள்ள உணவை எடுத்து விட்டு தினமும் காட்டுக்கு போய் வேலை செய்ய வேண்டும்.
+</div>
 </div>
 
-<div class="selector">
-<label for="daySelect">நாள் தேர்வு செய்யவும் (உணவைத் தொட்டால் செய்முறை & மாற்று உணவு தெரியும்)</label>
+<div class="tabs">
+<button id="tabDiet" class="active" onclick="switchTab('diet')">🍽️ அட்டவணை</button>
+<button id="tabGrocery" class="inactive" onclick="switchTab('grocery')">🛒 மளிகை</button>
+</div>
+
+<div class="selector" id="daySelectorBox">
+<div class="diet-mode-bar">
+<button id="btnPrefAll" onclick="setPrefMode('all')">எல்லாம்</button>
+<button id="btnPrefVeg" class="secondary" onclick="setPrefMode('veg')">🥬 சைவம் (Veg)</button>
+<button id="btnPrefNonVeg" class="secondary" onclick="setPrefMode('nonveg')">🍗 அசைவம் (Non-Veg)</button>
+</div>
+<label for="daySelect">நாள் தேர்வு செய்யவும்</label>
 <select id="daySelect"></select>
-
-<div class="today-bar">
-  <button class="btn-today" onclick="goToToday()">📍 இன்றைய நாளுக்குச் செல்</button>
-  <button class="btn-set-start" onclick="setTodayAsDay1()">🗓️ இன்று நாள் 1 என அமை</button>
-</div>
-<div class="start-info" id="startInfoText"></div>
-
 <div class="actions">
 <button onclick="changeDay(-1)">← முந்தைய நாள்</button>
 <button onclick="changeDay(1)">அடுத்த நாள் →</button>
 </div>
+<div class="auto-day-info">
+<span id="autoDayStatusText"></span>
+<button class="secondary" onclick="resetStartToToday()">இன்றைய நாளிலிருந்து தொடங்கு</button>
+</div>
 </div>
 
+<div id="dietView">
+<div id="mealPrepContainer"></div>
 <div id="schedule"></div>
+</div>
 
-<div class="tip">
-<h3>சிறுதானியங்கள் பற்றி</h3>
-ராகி, கம்பு, தினை, சாமை, வரகு, குதிரைவாலி ஆகியவற்றை மாற்றி மாற்றி
-உணவில் சேர்க்கலாம். நன்றாக வேகவைத்துச் சாப்பிடவும்.
-சிறுதானியங்கள் மட்டுமே முழுமையான உணவு அல்ல; பருப்பு, காய்கறி,
-பால் அல்லது தயிர், தேவையான புரத உணவுகளையும் சேர்த்துக்கொள்ள வேண்டும்.
+<div id="groceryView" style="display:none">
+<div class="day-title">
+<h2 id="groceryHeading">மளிகைப் பட்டியல்</h2>
+<span class="tag" id="groceryRangeTag">இன்றைய நாள்</span>
+</div>
+<div class="grocery-controls">
+<button id="btnRangeDay" onclick="setGroceryMode('day')">தேர்ந்தெடுத்த நாள்</button>
+<button id="btnRangeWeek" class="secondary" onclick="setGroceryMode('week')">இந்த வாரம் (7 நாட்கள்)</button>
+<button class="secondary" onclick="copyGroceryList()">📋 நகலெடு</button>
+</div>
+<div class="copy-msg" id="copyStatus"></div>
+<div id="groceryListContainer"></div>
+<div class="actions" style="margin-top:10px">
+<button class="secondary" onclick="clearCheckedGroceries()">டிக் செய்தவற்றை அழி</button>
+</div>
 </div>
 
 <div class="tip">
-<h3>தினமும் கவனிக்க வேண்டியவை</h3>
-- நாள் முழுவதும் போதுமான தண்ணீர் குடிக்கவும்.<br>
-- பழங்களை ஜூஸாக அல்லாமல் முழுப் பழமாகச் சாப்பிடவும்.<br>
-- காய்கறிகளை நன்றாகக் கழுவி நன்கு சமைக்கவும்.<br>
-- மருத்துவர் பரிந்துரைத்த ஃபோலிக் அமிலம், இரும்பு, கால்சியம் மாத்திரைகளைத் தொடரவும்.<br>
-- பச்சை முட்டை, அரைவேக்காடு இறைச்சி/மீன், காய்ச்சாத பால் தவிர்க்கவும்.<br>
-- சர்க்கரை சேர்த்த பானங்கள் மற்றும் பழச்சாறுகளைத் தவிர்க்கவும்.
+<h3>🌾 சிறுதானியங்கள் மற்றும் பயறு வகைகள்</h3>
+ராகி, கம்பு, தினை, சாமை, வரகு, குதிரைவாலி ஆகியவற்றுடன் கொள்ளு, மொச்சை,
+ராஜ்மா, கருப்பு உளுந்து, பாசிப்பருப்பு, துவரம் பருப்பு ஆகியவற்றை மாற்றி
+மாற்றிச் சேர்க்கலாம். பயறுகளை நன்கு ஊறவைத்து, முழுமையாக வேகவைத்துச் சாப்பிடவும்.
+முளைகட்டிய பயறுகளை ஆவியில் லேசாக வேகவைத்துச் சாப்பிடுவது பாதுகாப்பானது.
+</div>
+
+<div class="tip-grid">
+<div class="tip">
+<h3>🍊 இரும்புச்சத்து & வைட்டமின்-சி இணைப்பு</h3>
+கீரை, பயறு அல்லது சிறுதானிய உணவுகளுடன் கொய்யாப்பழம், ஆரஞ்சு அல்லது
+நெல்லிக்காய்/எலுமிச்சை சேர்க்கும்போது உடலில் இரும்புச்சத்து நன்கு உறிஞ்சப்படும்.
+டீ மற்றும் காபியை உணவு உட்கொண்ட உடனேயே குடிப்பதைத் தவிர்க்கவும்.
 </div>
 
 <div class="tip">
-<h3>நடைப்பயிற்சி</h3>
-மருத்துவர் அனுமதித்திருந்தால் மட்டும் காலை அல்லது மாலை
+<h3>🌿 செரிமானம் & மலச்சிக்கல் நிவாரணம்</h3>
+நாள் முழுவதும் தண்ணீர், நார்ச்சத்து நிறைந்த காய்கறிகள், முழுப் பழங்கள் மற்றும்
+மிதமான நடைப்பயிற்சி மலச்சிக்கலைக் குறைக்க உதவும். இரவு உணவைச் சற்று
+முன்கூட்டியே எடுத்துக்கொள்வது நெஞ்செரிச்சலைத் தடுக்க உதவும்.
+</div>
+</div>
+
+<div class="tip">
+<h3>🩺 தினமும் கவனிக்க வேண்டியவை</h3>
+• நாள் முழுவதும் போதுமான தண்ணீர் குடிக்கவும்.<br>
+• பழங்களை ஜூஸாக அல்லாமல் முழுப் பழமாகச் சாப்பிடவும்.<br>
+• காய்கறிகளை நன்றாகக் கழுவி நன்கு சமைக்கவும்.<br>
+• முட்டை, மீன், சிக்கன், மட்டன் ஆகியவற்றை நன்கு வேகவைத்து மட்டுமே சாப்பிடவும்; அதிக பாதரசம் கொண்ட பெரிய கடல் மீன்களைத் தவிர்க்கவும்.<br>
+• மருத்துவர் பரிந்துரைத்த ஃபோலிக் அமிலம், இரும்பு, கால்சியம் மாத்திரைகளைத் தொடரவும்.<br>
+• பச்சை முட்டை, அரைவேக்காடு இறைச்சி/மீன், காய்ச்சாத பால், சர்க்கரை சேர்த்த பானங்களைத் தவிர்க்கவும்.
+</div>
+
+<div class="tip">
+<h3>🚶 நடைப்பயிற்சி & மருத்துவ எச்சரிக்கை</h3>
+காலை மற்றும் மாலை
 10–15 நிமிடங்கள் வசதியான வேகத்தில் நடக்கலாம்.
-மயக்கம், வலி, இரத்தப்போக்கு அல்லது மூச்சுத்திணறல் ஏற்பட்டால்
-நிறுத்திவிட்டு மருத்துவ உதவி பெறவும்.
+கடுமையான வயிற்று வலி, இரத்தப்போக்கு, தலைச்சுற்றல்/மயக்கம், மூச்சுத்திணறல்
+அல்லது அதிக வீக்கம் ஏற்பட்டால் உடனடியாக ஓய்வெடுத்து மருத்துவ உதவி பெறவும்.
 </div>
 
+<!-- Recipe Modal -->
+<div class="modal-backdrop" id="recipeModal" onclick="closeRecipeModal(event)">
+<div class="modal-sheet" onclick="event.stopPropagation()">
+<div class="modal-header">
+<h3 id="modalTitle">செய்முறை</h3>
+<button class="modal-close" onclick="closeRecipeModal()">✕</button>
 </div>
-
-<!-- TAB 2: GROCERY LIST -->
-<div class="container" id="grocerySection" style="display:none;">
-  <div class="grocery-header">
-    <div>
-      <div class="grocery-stats" id="groceryCount">வாங்கியவை: 0 / 0</div>
-      <div style="font-size:12px;color:var(--muted);">வாங்கிய பொருட்களை டிக் (✓) செய்து வைத்துக்கொள்ளலாம்</div>
-    </div>
-    <button class="btn-reset" onclick="resetGrocery()">அனைத்தையும் அழி (Reset)</button>
-  </div>
-  <div id="groceryListContainer"></div>
+<div id="modalContent"></div>
 </div>
-
-<footer>
-இந்த அட்டவணை பொதுவான வழிகாட்டுதல் மட்டுமே.
-தனிப்பட்ட மருத்துவ ஆலோசனைக்கு மாற்றாகாது.
-</footer>
-
-<!-- Recipe & Swap Modal -->
-<div class="modal-overlay" id="recipeModal" onclick="closeRecipeOutside(event)">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3 id="modalTitle">செய்முறை விளக்கம்</h3>
-      <button class="close-btn" onclick="closeRecipe()" aria-label="மூடு">✕</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-foot">
-      <button onclick="closeRecipe()">மூடு</button>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -323,8 +412,8 @@ function createPngIcon(size) {
   const ctx = canvas.getContext("2d");
 
   const grad = ctx.createLinearGradient(0, 0, size, size);
-  grad.addColorStop(0, "#176b49");
-  grad.addColorStop(1, "#36a477");
+  grad.addColorStop(0, "#13543b");
+  grad.addColorStop(1, "#2b8d67");
   ctx.fillStyle = grad;
   ctx.beginPath();
   ctx.roundRect(0, 0, size, size, size * 0.22);
@@ -352,1002 +441,915 @@ const manifestObj = {
   start_url: "./",
   scope: "./",
   display: "standalone",
-  background_color: "#f4f7f5",
-  theme_color: "#23845b",
+  background_color: "#f6f8f6",
+  theme_color: "#1b6b4c",
   icons: [
-    { src: icon192, sizes: "192x192", type: "image/png", purpose: "any" },
-    { src: icon512, sizes: "512x512", type: "image/png", purpose: "any maskable" }
+    {
+      src: icon192,
+      sizes: "192x192",
+      type: "image/png",
+      purpose: "any"
+    },
+    {
+      src: icon512,
+      sizes: "512x512",
+      type: "image/png",
+      purpose: "any maskable"
+    }
   ]
 };
 
 document.getElementById("dynamicManifest").href =
   "data:application/manifest+json;charset=utf-8," + encodeURIComponent(JSON.stringify(manifestObj));
 
-/* ---------------- TAB NAVIGATION ---------------- */
-function switchTab(tab) {
-  const dietSec = document.getElementById("dietSection");
-  const grocSec = document.getElementById("grocerySection");
-  const dietBtn = document.getElementById("tabDietBtn");
-  const grocBtn = document.getElementById("tabGroceryBtn");
+function getLocalDateKey(dateObj = new Date()) {
+  const y = dateObj.getFullYear();
+  const m = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const d = String(dateObj.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
 
-  if (tab === "diet") {
-    dietSec.style.display = "block";
-    grocSec.style.display = "none";
-    dietBtn.classList.add("active");
-    grocBtn.classList.remove("active");
-  } else {
-    dietSec.style.display = "none";
-    grocSec.style.display = "block";
-    dietBtn.classList.remove("active");
-    grocBtn.classList.add("active");
-    renderGroceryList();
+function parseDateKey(key) {
+  const [y, m, d] = key.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function ensureStartDate() {
+  let startKey = localStorage.getItem("preg_plan_start_date");
+  if (!startKey) {
+    startKey = getLocalDateKey(new Date());
+    localStorage.setItem("preg_plan_start_date", startKey);
   }
+  return startKey;
 }
 
-/* ---------------- FEATURE 1: GROCERY LIST ---------------- */
-const groceryCategories = [
-  {
-    title: "1. சிறுதானியங்கள் மற்றும் அரிசி வகைகள்",
-    items: [
-      "ராகி (மாவு / அரிசி)",
-      "கம்பு (மாவு / அரிசி)",
-      "தினை அரிசி",
-      "சாமை அரிசி",
-      "வரகு அரிசி",
-      "குதிரைவாலி அரிசி",
-      "முழு கோதுமை மாவு",
-      "புழுங்கல் அரிசி",
-      "கைக்குத்தல் அரிசி",
-      "சிவப்பு அரிசி (மாப்பிள்ளை சம்பா)"
-    ]
-  },
-  {
-    title: "2. பருப்பு மற்றும் சுண்டல் வகைகள்",
-    items: [
-      "துவரம் பருப்பு / சாம்பார் பருப்பு",
-      "பாசிப்பருப்பு",
-      "உளுத்தம்பருப்பு (இட்லி/தோசைக்கு)",
-      "கொண்டைக்கடலை (வெள்ளை / கருப்பு)",
-      "முழு பச்சைப்பயறு",
-      "பச்சை வேர்க்கடலை",
-      "காராமணி (தட்டைப்பயறு)",
-      "வறுத்த பொட்டுக்கடலை"
-    ]
-  },
-  {
-    title: "3. காய்கறிகள் மற்றும் கீரைகள்",
-    items: [
-      "முருங்கைக்கீரை மற்றும் பிற கீரை வகைகள்",
-      "முருங்கைக்காய்",
-      "பீன்ஸ் & கேரட்",
-      "சுரைக்காய்",
-      "வெண்டைக்காய்",
-      "பீட்ரூட்",
-      "பூசணிக்காய்",
-      "கத்தரிக்காய் & பீர்க்கங்காய்",
-      "சின்ன வெங்காயம், தக்காளி, பூண்டு, இஞ்சி",
-      "கறிவேப்பிலை, கொத்தமல்லி, தேங்காய்"
-    ]
-  },
-  {
-    title: "4. பழங்கள்",
-    items: [
-      "கொய்யாப்பழம்",
-      "ஆப்பிள்",
-      "ஆரஞ்சு",
-      "வாழைப்பழம் (ஏலக்கி / செவ்வாழை)",
-      "மாதுளம்பழம்"
-    ]
-  },
-  {
-    title: "5. பால் பொருட்கள் மற்றும் பிற சத்தான பொருட்கள்",
-    items: [
-      "பசும்பால் / டோன்ட் பால்",
-      "புதிய தயிர்",
-      "முட்டை",
-      "பாதாம் பருப்பு",
-      "நல்லெண்ணெய் / சமையல் எண்ணெய் / நெய்"
-    ]
-  }
-];
-
-function getCheckedGroceries() {
-  try {
-    return JSON.parse(localStorage.getItem("preg_grocery_checked") || "{}");
-  } catch (e) {
-    return {};
-  }
+function getAutoDayIndex() {
+  const startKey = ensureStartDate();
+  const startDt = parseDateKey(startKey);
+  const now = new Date();
+  const todayDt = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const diffDays = Math.floor((todayDt - startDt) / 86400000);
+  if (diffDays <= 0) return 0;
+  return diffDays % 30;
 }
 
-function toggleGroceryItem(key) {
-  const checked = getCheckedGroceries();
-  checked[key] = !checked[key];
-  localStorage.setItem("preg_grocery_checked", JSON.stringify(checked));
-  renderGroceryList();
-}
-
-function resetGrocery() {
-  if (confirm("வாங்கிய பொருட்களின் டிக் அனைத்தையும் நீக்கவா?")) {
-    localStorage.removeItem("preg_grocery_checked");
-    renderGroceryList();
-  }
-}
-
-function renderGroceryList() {
-  const checked = getCheckedGroceries();
-  let total = 0;
-  let done = 0;
-  let html = "";
-
-  groceryCategories.forEach((cat, cIdx) => {
-    html += `<div class="grocery-cat"><h3>${cat.title}</h3>`;
-    cat.items.forEach((item, iIdx) => {
-      const key = `c${cIdx}_i${iIdx}`;
-      total++;
-      const isChecked = !!checked[key];
-      if (isChecked) done++;
-      html += `
-        <label class="g-item ${isChecked ? 'checked' : ''}">
-          <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleGroceryItem('${key}')">
-          <span>${item}</span>
-        </label>
-      `;
-    });
-    html += `</div>`;
-  });
-
-  document.getElementById("groceryCount").textContent = `வாங்கியவை: ${done} / ${total}`;
-  document.getElementById("groceryListContainer").innerHTML = html;
-}
-
-/* ---------------- FEATURE 3: TODAY TRACKING ---------------- */
-function setTodayAsDay1() {
-  const todayStr = new Date().toISOString().split("T")[0];
-  localStorage.setItem("preg_diet_start_date", todayStr);
+function resetStartToToday() {
+  const todayKey = getLocalDateKey(new Date());
+  localStorage.setItem("preg_plan_start_date", todayKey);
   select.value = 0;
   renderDay(0);
-  updateStartInfo();
-  alert("இன்றைய தேதி 'நாள் 1' ஆக அமைக்கப்பட்டது! இனி 'இன்றைய நாளுக்குச் செல்' பொத்தானை அழுத்தினால் சரியான நாள் தானாகத் திறக்கும்.");
+  renderGrocery();
 }
 
-function getTodayDayIndex() {
-  const startStr = localStorage.getItem("preg_diet_start_date");
-  if (!startStr) return null;
-  const start = new Date(startStr + "T00:00:00");
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const diffDays = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-  if (diffDays < 0) return 0;
-  return diffDays % 30; // Cycles automatically after 30 days
-}
-
-function goToToday() {
-  const idx = getTodayDayIndex();
-  if (idx === null) {
-    alert("முதலில் 'இன்று நாள் 1 என அமை' பொத்தானை அழுத்தி தொடங்கும் நாளைப் பதிவு செய்யவும்.");
-    return;
-  }
-  select.value = idx;
-  renderDay(idx);
-}
-
-function updateStartInfo() {
-  const startStr = localStorage.getItem("preg_diet_start_date");
-  const infoEl = document.getElementById("startInfoText");
-  if (!startStr) {
-    infoEl.textContent = "குறிப்பு: நீங்கள் தொடங்கும் நாளன்று 'இன்று நாள் 1 என அமை' என்பதை அழுத்தவும்.";
-  } else {
-    const idx = getTodayDayIndex();
-    infoEl.innerHTML = `தொடங்கிய தேதி: <b>${startStr}</b> • இன்றைய உணவு: <b>நாள் ${idx + 1}</b>`;
-  }
-}
-
-/* ---------------- 30 DAYS DATA ---------------- */
-const days=[
-[
-["7:00 AM","எழுந்ததும்","ஒரு டம்ளர் தண்ணீர்"],
-["7:30 AM","காலை உணவு","ராகி தோசை 2 + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்கீரை + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","ஒரு டம்ளர் பால்"],
-["8:00 PM","இரவு உணவு","காய்கறி சப்பாத்தி + பருப்பு கடைசல்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","கம்பு இட்லி 3 + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + கீரைக்கூட்டு + பீன்ஸ் பொரியல் + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால் + சிறிது பாதாம்"],
-["8:00 PM","இரவு உணவு","காய்கறி கோதுமை தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","தினை பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + சுரைக்காய் கூட்டு + முட்டை நன்கு வேகவைத்தது"],
-["4:00 PM","மாலை சிற்றுண்டி","வேர்க்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","தயிர்"],
-["8:00 PM","இரவு உணவு","ராகி இடியாப்பம் + காய்கறி குருமா"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","சாமை உப்புமா + தயிர்"],
-["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + பீன்ஸ் பொரியல் + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","கம்பு தோசை + காய்கறி சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","வரகு பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கீரை மசியல் + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","பொட்டுக்கடலை + பழம்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","கோதுமை சப்பாத்தி + காய்கறி கூட்டு"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","குதிரைவாலி உப்புமா + தயிர்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + வெண்டைக்காய் + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த கடலை"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","ராகி அடை + தக்காளி சட்னி"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","ராகி இட்லி + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு மாதுளை"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்காய் சாம்பார் + முட்டை"],
-["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","தயிர்"],
-["8:00 PM","இரவு உணவு","சாமை தோசை + காய்கறி சட்னி"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","கம்பு களி + பாசிப்பருப்பு கடைசல்"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + காய்கறி சாம்பார் + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","2 கோதுமை சப்பாத்தி + பருப்பு"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","தினை தோசை + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + கீரை கூட்டு + பீட்ரூட் பொரியல்"],
-["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","குதிரைவாலி இடியாப்பம் + காய்கறி குருமா"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","வரகு உப்புமா + தயிர்"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + பூசணிக்காய் கூட்டு + பருப்பு"],
-["4:00 PM","மாலை சிற்றுண்டி","வேர்க்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","கம்பு தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","குதிரைவாலி பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + கீரை மசியல் + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","பாசிப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","ராகி தோசை + காய்கறி சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","சாமை இடியாப்பம் + காய்கறி குருமா"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்கீரை + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","கோதுமை சப்பாத்தி + காய்கறி கூட்டு"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","கம்பு இட்லி + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + வெண்டைக்காய் + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","தினை அடை + தக்காளி சட்னி"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","ராகி களி + பருப்பு கடைசல்"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கேரட் பீன்ஸ் பொரியல் + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த கொண்டைக்கடலை"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","சாமை தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","வரகு இட்லி + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + கீரை + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","2 கோதுமை தோசை + காய்கறி சட்னி"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","குதிரைவாலி உப்புமா + தயிர்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + சுரைக்காய் கூட்டு + பருப்பு"],
-["4:00 PM","மாலை சிற்றுண்டி","பொட்டுக்கடலை + பழம்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","கம்பு அடை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","தினை பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கத்தரிக்காய் குழம்பு + கீரை"],
-["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","தயிர்"],
-["8:00 PM","இரவு உணவு","ராகி தோசை + காய்கறி சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","சாமை பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + பீன்ஸ் பொரியல் + பருப்பு"],
-["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","குதிரைவாலி தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","கம்பு தோசை + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்கீரை + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த கடலை"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","கோதுமை சப்பாத்தி + காய்கறி கூட்டு"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","ராகி இடியாப்பம் + காய்கறி குருமா"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + பூசணிக்காய் கூட்டு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","வரகு தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","குதிரைவாலி பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கீரை மசியல் + பருப்பு"],
-["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","தயிர்"],
-["8:00 PM","இரவு உணவு","கம்பு அடை + காய்கறி சட்னி"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","சாமை உப்புமா + தயிர்"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + வெண்டைக்காய் + பருப்பு"],
-["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","ராகி தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","வரகு பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + பீர்க்கங்காய் கூட்டு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","வேர்க்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","தினை தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","கம்பு இட்லி + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + காய்கறி கூட்டு + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","பாசிப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","குதிரைவாலி உப்புமா + காய்கறி"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","ராகி தோசை + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + முருங்கைக்கீரை + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","சாமை இடியாப்பம் + காய்கறி குருமா"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","தினை உப்புமா + தயிர்"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கீரை + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","கம்பு தோசை + காய்கறி சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","வரகு உப்புமா + தயிர்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + கேரட் பீன்ஸ் + பருப்பு"],
-["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","ராகி அடை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","குதிரைவாலி இடியாப்பம் + காய்கறி குருமா"],
-["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்காய் சாம்பார் + முட்டை நன்கு வேகவைத்தது"],
-["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த கொண்டைக்கடலை"],
-["6:30 PM","மாலை உணவு","தயிர்"],
-["8:00 PM","இரவு உணவு","கம்பு தோசை + சாம்பார்"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","சாமை பொங்கல் + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு"],
-["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + கீரை கூட்டு + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","தினை தோசை + காய்கறி சட்னி"]
-],
-[
-["7:00 AM","எழுந்ததும்","தண்ணீர்"],
-["7:30 AM","காலை உணவு","ராகி இட்லி + சாம்பார்"],
-["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்"],
-["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + பீன்ஸ் பொரியல் + பருப்பு + தயிர்"],
-["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்"],
-["6:30 PM","மாலை உணவு","பால்"],
-["8:00 PM","இரவு உணவு","வரகு தோசை + சாம்பார்"]
-]
+const dailyReminders = [
+  "இன்று கீரை மற்றும் பயறு உணவுகளுடன் கொய்யாப்பழம்/ஆரஞ்சு சேர்த்துக் கொள்ளவும்; இது இரும்புச்சத்தை உடலில் நன்கு உறிஞ்ச உதவும்.",
+  "பசி ஏற்பட்டால் உணவைத் தவிர்க்காமல் பழம், தயிர், பால் அல்லது ஆவியில் வேகவைத்த பயறு போன்ற சத்தான சிற்றுண்டியைச் சேர்த்துக்கொள்ளலாம்.",
+  "இன்று உட்கொள்ளும் முட்டை, மீன் அல்லது இறைச்சி வகைகள் முழுமையாக நன்கு வேகவைக்கப்பட்டிருப்பதை உறுதி செய்யவும்.",
+  "மதிய உணவில் தயிர் அல்லது மோர் சேர்த்துக்கொள்வது கால்சியம் மற்றும் செரிமானத்திற்கு மிகவும் சிறந்தது.",
+  "சிறுதானியங்கள் மற்றும் பயறுகளை நன்கு ஊறவைத்து, போதுமான தண்ணீர் விட்டு வேகவைத்துச் சாப்பிடவும்.",
+  "இரவு உணவை மிதமான அளவில், தூங்கச் செல்வதற்கு குறைந்தது 2 மணி நேரத்திற்கு முன்பாக முடிக்க முயற்சிக்கவும்.",
+  "பழங்களை ஜூஸாக அல்லாமல் முழுப் பழமாகச் சாப்பிடுவது நார்ச்சத்து மற்றும் சீரான ரத்தச் சர்க்கரை அளவிற்கு உதவும்.",
+  "காய்கறிகளை நன்கு கழுவி, ஆவியில் அல்லது மிதமான எண்ணெயில் சமைத்து உட்கொள்ளவும்.",
+  "கருப்பு உளுந்து மற்றும் பால் பொருட்கள் கால்சியம் சத்தை வழங்கி எலும்பு வலிமைக்கு உதவும்.",
+  "நாள் முழுவதும் சிறிது சிறிதாகத் தண்ணீர் குடிப்பதன் மூலம் சோர்வும் நீர்ச்சத்துக் குறைபாடும் குறையும்.",
+  "மருத்துவர் பரிந்துரைத்த ஃபோலிக் அமிலம், இரும்பு மற்றும் கால்சியம் மாத்திரைகளைத் தவறாமல் தொடரவும்.",
+  "பாதாம், வேர்க்கடலை போன்ற நட்ஸ் மற்றும் பயறுகளை அளவோடு நன்கு வேகவைத்துச் சேர்க்கலாம்.",
+  "சர்க்கரை சேர்த்த பானங்கள், பேக்கரி தின்பண்டங்கள் மற்றும் அதிக எண்ணெய் பொரித்த உணவுகளைத் தவிர்க்கவும்.",
+  "இன்று காலை அல்லது மாலையில் மருத்துவர் அனுமதித்திருந்தால் 10–15 நிமிடங்கள் நிதானமாக நடக்கவும்.",
+  "சிறுதானியங்களை தினமும் ஒரே மாதிரி இல்லாமல் ராகி, கம்பு, தினை, சாமை, வரகு, குதிரைவாலி என மாற்றிச் சேர்க்கலாம்.",
+  "செரிமானத்திற்காக மதிய உணவில் பருப்பு, கீரை மற்றும் காய்கறிகளைச் சமச்சீராகச் சேர்க்கவும்.",
+  "எந்த உணவாவது சிரமம் அல்லது நெஞ்செரிச்சல் தருகிறதா என்பதைக் கவனித்து, அடுத்தடுத்த நாட்களில் சரிசெய்யவும்.",
+  "காலை எழுந்ததும் ஒரு டம்ளர் தண்ணீர் குடிப்பது நாள் முழுவதும் புத்துணர்ச்சியுடன் இருக்க உதவும்.",
+  "மாலை நேரத்தில் வேகவைத்த சுண்டல் அல்லது பழம் சாப்பிடுவது இரவு நேர அதிகப் பசியைத் தடுக்கும்.",
+  "அசைவ உணவில் அதிக பாதரசம் கொண்ட பெரிய கடல் மீன்களைத் தவிர்த்து, நன்கு வேகவைத்த பாதுகாப்பான மீன்/சிக்கன்/முட்டை தேர்வு செய்யவும்.",
+  "இன்று காய்கறி மற்றும் பருப்பு வகைகளை மளிகைப் பட்டியலில் சரிபார்த்துத் தயாராக வைத்துக்கொள்ளவும்.",
+  "பச்சையான முட்டை, அரைவேக்காடு இறைச்சி மற்றும் காய்ச்சாத பால் ஆகியவற்றை முற்றிலும் தவிர்க்கவும்.",
+  "உடலில் சோர்வு தோன்றினால் கட்டாயப்படுத்தாமல் சிறிது நேரம் ஓய்வெடுக்கவும்.",
+  "பயறு வகைகளில் சீரகம், இஞ்சி அல்லது பெருங்காயம் சேர்த்துச் சமைப்பது செரிமானத்தை எளிதாக்கும்.",
+  "வாரத்தின் சில நாட்களில் கைக்குத்தல் அல்லது சிவப்பு அரிசியைச் சேர்த்து நார்ச்சத்து பெறலாம்.",
+  "பழச்சாறுகளை விட முழுப் பழங்கள் வயிற்றுக்கு நிறைவையும் கூடுதல் நார்ச்சத்தையும் தரும்.",
+  "தினசரி உணவு அட்டவணையை உங்கள் மகப்பேறு மருத்துவர் அல்லது ஊட்டச்சத்து நிபுணரிடம் காட்டி உறுதிப்படுத்தவும்.",
+  "கர்ப்பகாலத்தில் எந்த ஒரு கடுமையான டயட் அல்லது பட்டினியையும் பின்பற்ற வேண்டாம்.",
+  "இன்று எடுத்த உணவுகள் மற்றும் தண்ணீர் அளவைக் கவனித்து, நாளைக்கான உணவைத் திட்டமிடவும்.",
+  "30 நாள் பயணத்தைத் தொடரும் உங்களுக்கு வாழ்த்துகள்; ஆரோக்கியமும் பாதுகாப்பும் எப்போதும் முன்னுரிமையாக இருக்கட்டும்."
 ];
 
-/* ---------------- FEATURE 4: ALTERNATIVE / SWAP LOGIC ---------------- */
-function getAlternativeFood(title, food) {
-  if (food.includes("தண்ணீர்")) {
-    return "சீரகம் போட்டு கொதிக்க வைத்த வெதுவெதுப்பான நீர் அல்லது எலுமிச்சை சாறு (சர்க்கரை இல்லாமல்) கலந்த வெதுவெதுப்பான நீர்.";
+const recipeDatabase = [
+  {
+    match: ["தண்ணீர்", "சீரக நீர்"],
+    symptomLabels: ["மசக்கை", "நெஞ்செரிச்சல்", "மலச்சிக்கல்"],
+    prepTime: "5 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 டம்ளர் (220 மிலி)",
+    title: "காலை எழுந்ததும் குடிக்கும் சுத்தமான நீர் / சீரக நீர்",
+    ingredients: [
+      "சுத்திகரிக்கப்பட்ட அல்லது காய்ச்சி ஆறிய குடிநீர் – 1 டம்ளர் (220 மிலி)",
+      "செரிமானம் / மசக்கைக்கு: ¼ டீஸ்பூன் சீரகம் அல்லது 1 சிறிய துண்டு தட்டிய இஞ்சி"
+    ],
+    steps: [
+      "சுத்தமான குடிநீரைப் பயன்படுத்தவும்; ஐஸ் தண்ணீரைத் தவிர்த்து அறை வெப்பநிலையில் உள்ள நீர் அல்லது மிதமான வெதுவெதுப்பான நீரை எடுக்கவும்.",
+      "வெந்நீர் எனில் பாத்திரத்தில் 5 நிமிடம் கொதிக்க வைத்து, குடிக்க ஏற்ற மிதமான சூட்டிற்கு ஆறவைக்கவும்.",
+      "சீரக நீர் எனில் ¼ டீஸ்பூன் சீரகத்தை 1 டம்ளர் தண்ணீரில் 3 நிமிடம் கொதிக்க வைத்து வடிகட்டி குடிக்கலாம்.",
+      "எழுந்தவுடன் அவசரப்படாமல் உட்கார்ந்து மெதுவாகப் பருகவும்."
+    ],
+    substitutes: "• சீரகத்திற்குப் பதிலாக: ¼ டீஸ்பூன் ஓமம் அல்லது தட்டிய இஞ்சித் துண்டு.<br>• மசக்கை உணர்வு இருந்தால்: வெதுவெதுப்பான நீரில் 2 சொட்டு எலுமிச்சை சாறு சேர்த்துப் பருகலாம்.",
+    safety: "தண்ணீர் எப்போதும் சுத்தமாகவும் காய்ச்சி ஆறியதாகவும் இருக்க வேண்டும்; நாள் முழுவதும் 8–10 டம்ளர் தண்ணீர் பருகவும்."
+  },
+  {
+    match: ["குழிப்பணியாரம்", "பணியாரம்"],
+    symptomLabels: ["மசக்கை", "நார்ச்சத்து"],
+    prepTime: "20 நிமிடம்",
+    soakTime: "4–5 மணி நேரம்",
+    serving: "1 நபர் (5–6 பணியாரம்)",
+    title: "சிறுதானிய காய்கறி குழிப்பணியாரம் & தேங்காய் சட்னி",
+    ingredients: [
+      "வரகு / சாமை / ராகி மாவு – ½ கப், இட்லி மாவு – ¼ கப்",
+      "துருவிய கேரட் – 2 டேபிள்ஸ்பூன், பொடியாக நறுக்கிய வெங்காயம், கறிவேப்பிலை, கொத்தமல்லி",
+      "கடுகு, உளுத்தம் பருப்பு, சீரகம் – ½ டீஸ்பூன், உப்பு, நல்லெண்ணெய்"
+    ],
+    steps: [
+      "சிறுதானிய மாவு மற்றும் இட்லி மாவை உப்பு சேர்த்து பணியார மாவு பதத்திற்கு கரைத்துக்கொள்ளவும்.",
+      "கடாயில் சிறிது எண்ணெய் ஊற்றி கடுகு, உளுந்து, சீரகம், வெங்காயம், கேரட் மற்றும் கறிவேப்பிலை வதக்கி மாவில் சேர்க்கவும்.",
+      "பணியாரக் கல்லை சூடாக்கி குழிகளில் சிறிது எண்ணெய் விட்டு மாவை ஊற்றி, இருபுறமும் பொன்னிறமாக வேகவைத்து தேங்காய் சட்னியுடன் பரிமாறவும்."
+    ],
+    substitutes: "• வரகு/சாமைக்குப் பதிலாக: கம்பு, தினை அல்லது ராகி மாவு.<br>• தேங்காய் சட்னிக்குப் பதிலாக: தக்காளி-புதினா சட்னி அல்லது சாம்பார்.",
+    safety: "பணியாரம் உள்ளே மாவாக இல்லாமல் மிதமான தீயில் நன்கு வெந்திருப்பதை உறுதி செய்யவும்."
+  },
+  {
+    match: ["கட்லெட்"],
+    symptomLabels: ["புரதம் & இரும்புச்சத்து"],
+    prepTime: "25 நிமிடம்",
+    soakTime: "6–8 மணி நேரம் (பயறுக்கு)",
+    serving: "1 நபர் (2 கட்லெட்)",
+    title: "பச்சைப்பயறு & காய்கறி கட்லெட் (தோசைக்கல்லில் சுட்டது)",
+    ingredients: [
+      "ஊறவைத்து நன்கு வேகவைத்த பச்சைப்பயறு / கொண்டைக்கடலை – ½ கப்",
+      "வேகவைத்து மசித்த உருளைக்கிழங்கு அல்லது சர்க்கரைவள்ளிக் கிழங்கு – 1 சிறியது",
+      "துருவிய கேரட், பீன்ஸ் – 3 டேபிள்ஸ்பூன், இஞ்சி-பூண்டு விழுது, சீரகத் தூள், மஞ்சள் தூள், உப்பு"
+    ],
+    steps: [
+      "வேகவைத்த பச்சைப்பயறு மற்றும் கிழங்கை நன்கு மசித்து, துருவிய கேரட், மசாலா மற்றும் உப்பு சேர்த்துப் பிசையவும்.",
+      "சிறிய வட்டங்களாகத் தட்டி, எண்ணெயில் பொரிக்காமல் தோசைக்கல்லில் சிறிது எண்ணெய் தடவி இருபுறமும் நன்கு சிவக்க வேகவைத்து எடுக்கவும்."
+    ],
+    substitutes: "• பச்சைப்பயறுக்குப் பதிலாக: கருப்பு கொண்டைக்கடலை, ராஜ்மா அல்லது சோயா சங்க்ஸ்.<br>• உருளைக்கிழங்குக்குப் பதிலாக: வேகவைத்த சர்க்கரைவள்ளிக் கிழங்கு அல்லது அவல்.",
+    safety: "எண்ணெயில் ஆழமாகப் பொரிப்பதைத் தவிர்த்து தோசைக்கல்லில் சுட்டு எடுப்பது நெஞ்செரிச்சலைத் தடுக்கும்."
+  },
+  {
+    match: ["பாலக் பனீர்", "பனீர்"],
+    symptomLabels: ["கால்சியம் & இரும்புச்சத்து"],
+    prepTime: "25 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 நபர் (¾ கப்)",
+    title: "பாலக்கீரை பனீர் கிரேவி",
+    ingredients: [
+      "சுத்தம் செய்த பாலக்கீரை – 1 கட்டு (2 கப் நறுக்கியது)",
+      "புதிய பனீர் துண்டுகள் – 60–75 கிராம்",
+      "வெங்காயம் – 1, தக்காளி – 1, இஞ்சி-பூண்டு விழுது – 1 டீஸ்பூன், சீரகம், மஞ்சள் தூள், உப்பு"
+    ],
+    steps: [
+      "பாலக்கீரையை நன்கு கழுவி கொதிக்கும் நீரில் 3 நிமிடம் வேகவைத்து, ஆறியதும் மையாக அரைத்துக்கொள்ளவும்.",
+      "கடாயில் எண்ணெய் ஊற்றி சீரகம், வெங்காயம், இஞ்சி-பூண்டு, தக்காளி மற்றும் மஞ்சள் தூள் வதக்கவும்.",
+      "அரைத்த கீரை விழுது மற்றும் பனீர் துண்டுகளைச் சேர்த்து 6–8 நிமிடம் நன்கு கொதிக்க வைத்து இறக்கவும்."
+    ],
+    substitutes: "• பனீருக்குப் பதிலாக: டோஃபு (Tofu) அல்லது வேகவைத்த பச்சைப் பட்டாணி / கொண்டைக்கடலை.<br>• பாலக்கீரைக்குப் பதிலாக: அரைக்கீரை அல்லது சிறுகீரை.",
+    safety: "பனீர் எப்போதும் புதியதாகவும், குழம்பில் நன்கு வெந்ததாகவும் இருக்க வேண்டும்."
+  },
+  {
+    match: ["முருங்கைக்கீரை சூப்", "காய்கறி சூப்"],
+    symptomLabels: ["இரும்புச்சத்து & மலச்சிக்கல்"],
+    prepTime: "15 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 கப் (220 மிலி)",
+    title: "சத்தான முருங்கைக்கீரை & பாசிப்பருப்பு சூப்",
+    ingredients: [
+      "சுத்தம் செய்த முருங்கைக்கீரை – 1 கப், பாசிப்பருப்பு – 1½ டேபிள்ஸ்பூன்",
+      "சின்ன வெங்காயம் – 4, தக்காளி – ½, பூண்டு – 3 பல், சீரகம் – ½ டீஸ்பூன், மிளகுத் தூள், மஞ்சள் தூள், உப்பு"
+    ],
+    steps: [
+      "முருங்கைக்கீரையை நன்கு கழுவி, பாசிப்பருப்பு, சின்ன வெங்காயம், தக்காளி, பூண்டு, சீரகம் மற்றும் மஞ்சள் தூளுடன் 2 கப் தண்ணீர் சேர்த்து வேகவிடவும்.",
+      "கீரை மற்றும் பருப்பு நன்கு வெந்ததும் மத்து கொண்டு மசித்து வடிகட்டவும் (அல்லது கீரையுடனும் பருகலாம்).",
+      "உப்பு மற்றும் மிளகுத் தூள் சேர்த்து சூடாகப் பரிமாறவும்."
+    ],
+    substitutes: "• முருங்கைக்கீரைக்குப் பதிலாக: பாலக்கீரை, பூசணிக்காய் அல்லது கேரட்-தக்காளி.<br>• பாசிப்பருப்புக்குப் பதிலாக: துவரம் பருப்பு அல்லது வேகவைத்த கொள்ளு.",
+    safety: "கீரையை மண் மற்றும் தூசி இல்லாமல் நன்கு கழுவி முழுமையாக வேகவைக்கவும்."
+  },
+  {
+    match: ["பானகம்", "இளநீர்"],
+    symptomLabels: ["மசக்கை", "நீர்ச்சத்து"],
+    prepTime: "5 நிமிடம்",
+    soakTime: "15 நிமிடம் (சப்ஜா விதைக்கு)",
+    serving: "1 டம்ளர் (200 மிலி)",
+    title: "இளநீர்-சப்ஜா பானம் / பாரம்பரிய பானகம்",
+    ingredients: [
+      "இளநீர் – 1 கப், ஊறவைத்த சப்ஜா விதை – 1 டீஸ்பூன் (அல்லது பானகத்திற்கு: வெல்லம் – 1 டேபிள்ஸ்பூன், எலுமிச்சை சாறு – 1 டீஸ்பூன், சுக்கு பொடி, ஏலக்காய்)"
+    ],
+    steps: [
+      "சப்ஜா விதையை 15 நிமிடம் தண்ணீரில் ஊறவைத்து, புதிய இளநீரில் கலந்து பருகவும்.",
+      "பானகம் எனில் சுத்தமான தண்ணீரில் வெல்லம் கரைத்து வடிகட்டி, எலுமிச்சை சாறு, சிட்டிகை சுக்கு பொடி மற்றும் ஏலக்காய் தூள் சேர்த்துப் பருகவும்."
+    ],
+    substitutes: "• சப்ஜா விதைக்குப் பதிலாக: வெறும் இளநீர் அல்லது சீரக நீர்மோர்.<br>• வெல்லத்திற்குப் பதிலாக: சர்க்கரை நோய் உள்ளவர்கள் வெல்லம் சேர்க்காமல் எலுமிச்சை-புதினா நீர் பருகவும்.",
+    safety: "சர்க்கரை அளவு அதிகம் உள்ளவர்கள் (Gestational Diabetes) வெல்லம்/பானகத்தைத் தவிர்த்து இளநீர் அல்லது நீர்மோர் மட்டும் பருகவும்."
+  },
+  {
+    match: ["மோர்"],
+    symptomLabels: ["நெஞ்செரிச்சல்", "மசக்கை & குளிர்ச்சி"],
+    prepTime: "5 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 டம்ளர் (200 மிலி)",
+    title: "சீரக-கறிவேப்பிலை நீர்மோர்",
+    ingredients: [
+      "புளிக்காத கெட்டித் தயிர் – 3 டேபிள்ஸ்பூன், தண்ணீர் – 1 டம்ளர்",
+      "வறுத்துப் பொடித்த சீரகம் – ¼ டீஸ்பூன், நசுக்கிய இஞ்சி – சிறு துண்டு, கறிவேப்பிலை, பெருங்காயம், உப்பு"
+    ],
+    steps: [
+      "தயிரில் தண்ணீர் சேர்த்து கட்டியில்லாமல் நன்கு கடைந்து கொள்ளவும்.",
+      "அதில் சீரகத் தூள், நசுக்கிய இஞ்சி, கறிவேப்பிலை, சிட்டிகை பெருங்காயம் மற்றும் தேவையான உப்பு சேர்த்துக் கலக்கவும்.",
+      "மதிய உணவுக்குப் பிறகு அல்லது மாலை வேளையில் அறை வெப்பநிலையில் பருகவும்."
+    ],
+    substitutes: "• தயிருக்குப் பதிலாக: வீட்டில் காய்ச்சிய பாலில் உறை ஊற்றிய புதிய தயிர்.<br>• இஞ்சிக்குப் பதிலாக: பொடியாக நறுக்கிய கொத்தமல்லி மற்றும் புதினா.",
+    safety: "அதிக புளிப்பான தயிரையும், மிகவும் குளிர்ந்த ஐஸ் மோரையும் தவிர்க்கவும்."
+  },
+  {
+    match: ["ராகி தோசை", "கம்பு தோசை", "தினை தோசை", "சாமை தோசை", "வரகு தோசை", "குதிரைவாலி தோசை"],
+    symptomLabels: ["மலச்சிக்கல் நிவாரணம்"],
+    prepTime: "20 நிமிடம்",
+    soakTime: "30 நிமிடம்",
+    serving: "1 நபர் (2 தோசை + 1 கப் சாம்பார்)",
+    title: "சிறுதானிய தோசை & காய்கறி சாம்பார்",
+    ingredients: [
+      "சிறுதானிய மாவு (ராகி / கம்பு / தினை / சாமை / வரகு / குதிரைவாலி) – ½ கப் (60 கிராம்)",
+      "உளுந்து மாவு அல்லது இட்லி மாவு – 2 டேபிள்ஸ்பூன்",
+      "பொடியாக நறுக்கிய வெங்காயம் – 2 டேபிள்ஸ்பூன், கறிவேப்பிலை, சீரகம் – ½ டீஸ்பூன், உப்பு",
+      "சாம்பாருக்கு: துவரம் பருப்பு – 3 டேபிள்ஸ்பூன், கேரட், பீன்ஸ், முருங்கைக்காய், மஞ்சள் தூள், சாம்பார் பொடி"
+    ],
+    steps: [
+      "சிறுதானிய மாவுடன் உளுந்து மாவு, உப்பு, சீரகம் மற்றும் தண்ணீர் சேர்த்து தோசை மாவு பதத்திற்கு கரைத்து 20–30 நிமிடம் வைக்கவும்.",
+      "தோசைக்கல்லை சூடாக்கி சிறிது நல்லெண்ணெய் தடவி, மாவை வட்டமாக ஊற்றி, மேல் பகுதியில் வெங்காயம் மற்றும் கறிவேப்பிலை தூவவும்.",
+      "இருபுறமும் மிதமான தீயில் நன்கு வேகவைத்து எடுக்கவும்.",
+      "சாம்பாருக்கு துவரம் பருப்பை மஞ்சள் தூளுடன் குக்கரில் நன்கு குழைய வேகவைத்து, காய்கறிகள் மற்றும் சாம்பார் பொடி சேர்த்து 10 நிமிடம் கொதிக்கவிடவும்."
+    ],
+    substitutes: "• ராகி மாவுக்குப் பதிலாக: கம்பு, வரகு, சாமை அல்லது தினை மாவு.<br>• துவரம் பருப்புக்குப் பதிலாக: பாசிப்பருப்பு அல்லது மசூர் பருப்பு.",
+    safety: "சிறுதானிய மாவு உள்ளே பச்சையாக இல்லாமல் இருபுறமும் நன்கு வெந்திருக்க வேண்டும்."
+  },
+  {
+    match: ["இட்லி"],
+    symptomLabels: ["மசக்கை", "செரிமானம்"],
+    prepTime: "15 நிமிடம்",
+    soakTime: "5–6 மணி நேரம்",
+    serving: "1 நபர் (3 இட்லி + 1 கப் சாம்பார்)",
+    title: "ஆவியில் வேகவைத்த சிறுதானிய இட்லி",
+    ingredients: [
+      "சிறுதானியம் (கம்பு / ராகி / வரகு) – 1 கப் (150 கிராம்)",
+      "இட்லி அரிசி – ½ கப், முழு உளுந்து – ⅓ கப், வெந்தயம் – ¼ டீஸ்பூன், உப்பு"
+    ],
+    steps: [
+      "சிறுதானியம், அரிசி மற்றும் உளுந்து-வெந்தயம் ஆகியவற்றை சுத்தமாகக் கழுவி 5–6 மணி நேரம் ஊறவைக்கவும்.",
+      "முதலில் உளுந்தை நன்கு பொங்க அரைத்து, பின் சிறுதானியம்-அரிசியை மிருதுவாக அரைத்து உப்பு சேர்த்து 8 மணி நேரம் புளிக்க விடவும்.",
+      "இட்லி தட்டில் சிறிது எண்ணெய் தடவி மாவு ஊற்றி, கொதிக்கும் நீரில் 10–12 நிமிடம் ஆவியில் வேகவைத்து எடுக்கவும்."
+    ],
+    substitutes: "• கம்பு/வரகுக்குப் பதிலாக: சாமை, தினை அல்லது குதிரைவாலி.<br>• இட்லி அரிசிக்குப் பதிலாக: கைக்குத்தல் புழுங்கல் அரிசி.",
+    safety: "ஆவியில் நன்கு வேகவைத்த இட்லி எண்ணெய் இல்லாததால் நெஞ்செரிச்சல் மற்றும் மசக்கைக்கு மிகவும் ஏற்றது."
+  },
+  {
+    match: ["பொங்கல்"],
+    symptomLabels: ["செரிமானம்"],
+    prepTime: "20 நிமிடம்",
+    soakTime: "30 நிமிடம்",
+    serving: "1 நபர் (1 கப் பொங்கல்)",
+    title: "சிறுதானிய வெண்பொங்கல்",
+    ingredients: [
+      "தினை / வரகு / சாமை / குதிரைவாலி அரிசி – ⅓ கப் (50 கிராம்)",
+      "பாசிப்பருப்பு – 2 டேபிள்ஸ்பூன் (லேசாக வறுத்தது)",
+      "மிளகு – ½ டீஸ்பூன், சீரகம் – ½ டீஸ்பூன், இஞ்சி துருவல் – ½ டீஸ்பூன், பெருங்காயம், நெய் – 1 டீஸ்பூன்"
+    ],
+    steps: [
+      "சிறுதானியம் மற்றும் வறுத்த பாசிப்பருப்பை கழுவி 30 நிமிடம் ஊறவைக்கவும்.",
+      "குக்கரில் 1:3.5 என்ற விகிதத்தில் தண்ணீர், மஞ்சள் தூள் மற்றும் உப்பு சேர்த்து 4–5 விசில் வரை நன்கு குழைய வேகவிடவும்.",
+      "நெய்யில் மிளகு, சீரகம், இஞ்சி, பெருங்காயம் மற்றும் கறிவேப்பிலை தாளித்து பொங்கலில் சேர்த்து கிளறவும்."
+    ],
+    substitutes: "• தினை அரிசிக்குப் பதிலாக: சாமை, வரகு, குதிரைவாலி அல்லது கைக்குத்தல் அரிசி.<br>• நெய்க்குப் பதிலாக: நல்லெண்ணெய்.",
+    safety: "இஞ்சி மற்றும் பெருங்காயம் சேர்ப்பதால் வாயுத் தொல்லை இல்லாமல் எளிதில் செரிமானமாகும்."
+  },
+  {
+    match: ["உப்புமா", "அவல்"],
+    symptomLabels: ["மசக்கை", "மலச்சிக்கல்"],
+    prepTime: "15 நிமிடம்",
+    soakTime: "10 நிமிடம் (அவலுக்கு)",
+    serving: "1 நபர் (1 கப்)",
+    title: "சிவப்பு அவல் / சிறுதானிய காய்கறி உப்புமா",
+    ingredients: [
+      "சிவப்பு அவல் அல்லது சாமை / வரகு ரவை – ½ கப் (60 கிராம்)",
+      "பொடியாக நறுக்கிய கேரட், பீன்ஸ், வெங்காயம் – ½ கப்",
+      "கடுகு, உளுந்து, இஞ்சி, கறிவேப்பிலை, எலுமிச்சை சாறு – 1 டீஸ்பூன், உப்பு"
+    ],
+    steps: [
+      "சிவப்பு அவல் எனில் கழுவி 10 நிமிடம் ஊறவைத்து வடிக்கவும் (சிறுதானிய ரவை எனில் 3 நிமிடம் வறுக்கவும்).",
+      "கடாயில் எண்ணெய் ஊற்றி கடுகு, உளுந்து, இஞ்சி, கறிவேப்பிலை தாளித்து வெங்காயம் மற்றும் காய்கறிகளை வதக்கவும்.",
+      "தேவையான தண்ணீர் மற்றும் உப்பு சேர்த்து வேகவைத்து, அவல்/சிறுதானியம் சேர்த்து கிளறி எலுமிச்சை சாறு பிழிந்து இறக்கவும்."
+    ],
+    substitutes: "• சிவப்பு அவலுக்குப் பதிலாக: சாமை ரவை, வரகு ரவை அல்லது சம்பா கோதுமை ரவை.<br>• கேரட்/பீன்ஸுக்குப் பதிலாக: பச்சைப் பட்டாணி அல்லது குடைமிளகாய்.",
+    safety: "எலுமிச்சை சாறு மற்றும் இஞ்சி சேர்ப்பதால் காலை மசக்கை உணர்வு குறையும்."
+  },
+  {
+    match: ["இடியாப்பம்", "குருமா"],
+    symptomLabels: ["எளிதில் செரிமானம்"],
+    prepTime: "25 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 நபர் (3 இடியாப்பம் + ½ கப் குருமா)",
+    title: "சிறுதானிய இடியாப்பம் & பனீர் / சிக்கன் குருமா",
+    ingredients: [
+      "ராகி / சாமை / குதிரைவாலி இடியாப்ப மாவு – ½ கப் (60 கிராம்), கொதிக்கும் தண்ணீர் – ¾ கப், உப்பு",
+      "குருமாவுக்கு: கேரட், பீன்ஸ், பனீர் – 50 கிராம் (அல்லது தோல் நீக்கிய சிக்கன் – 100 கிராம்)",
+      "தேங்காய் – 2 டேபிள்ஸ்பூன், சோம்பு – ½ டீஸ்பூன், பொட்டுக்கடலை – 1 டீஸ்பூன், மஞ்சள் தூள்"
+    ],
+    steps: [
+      "மாவில் உப்பு சேர்த்து கொதிக்கும் தண்ணீர் ஊற்றி மென்மையான மாவாக பிசைந்து இடியாப்ப அச்சில் பிழிந்து ஆவியில் 8–10 நிமிடம் வேகவைக்கவும்.",
+      "தேங்காய், சோம்பு, பொட்டுக்கடலையை மையாக அரைத்துக்கொள்ளவும்.",
+      "கடாயில் வெங்காயம், தக்காளி, மஞ்சள் தூள், காய்கறிகள் மற்றும் பனீர் (அல்லது நன்கு கழுவிய சிக்கன்) சேர்த்து நன்கு வேகவைத்து, அரைத்த விழுது சேர்த்து கொதிக்க வைத்து இறக்கவும்."
+    ],
+    substitutes: "• பனீருக்குப் பதிலாக: டோஃபு, வேகவைத்த பச்சைப் பட்டாணி அல்லது கொண்டைக்கடலை.<br>• பொட்டுக்கடலைக்குப் பதிலாக: ஊறவைத்த முந்திரி (3–4).",
+    safety: "சிக்கன் மற்றும் பனீர் ஆகியவை முழுமையாக வெந்திருக்க வேண்டும்."
+  },
+  {
+    match: ["பலதானிய அடை", "ராகி அடை", "கம்பு அடை", "தினை அடை"],
+    symptomLabels: ["புரதம் & இரும்புச்சத்து"],
+    prepTime: "25 நிமிடம்",
+    soakTime: "3 மணி நேரம்",
+    serving: "1 நபர் (2 அடை)",
+    title: "சத்தான பலதானிய & முருங்கைக்கீரை அடை",
+    ingredients: [
+      "ராகி / கம்பு / தினை மாவு – ½ கப் (60 கிராம்)",
+      "துவரம் பருப்பு, கடலைப் பருப்பு, பாசிப்பருப்பு – தலா 1½ டேபிள்ஸ்பூன்",
+      "சுத்தம் செய்து நறுக்கிய முருங்கைக்கீரை – ¼ கப், வெங்காயம், சீரகம், இஞ்சி, பெருங்காயம், உப்பு"
+    ],
+    steps: [
+      "பருப்பு வகைகளை 3 மணி நேரம் ஊறவைத்து, இஞ்சி மற்றும் சீரகத்துடன் கொரகொரப்பாக அரைக்கவும்.",
+      "அதில் சிறுதானிய மாவு, முருங்கைக்கீரை, வெங்காயம், பெருங்காயம் மற்றும் உப்பு சேர்த்து கரைக்கவும்.",
+      "சூடான தோசைக்கல்லில் அடைகளாக ஊற்றி இருபுறமும் நன்கு சிவக்க வேகவைத்து எடுக்கவும்."
+    ],
+    substitutes: "• முருங்கைக்கீரைக்குப் பதிலாக: பாலக்கீரை, அரைக்கீரை அல்லது துருவிய கேரட்.<br>• கடலைப் பருப்புக்குப் பதிலாக: முழு பச்சைப்பயறு அல்லது உளுத்தம் பருப்பு.",
+    safety: "கீரை மற்றும் பருப்பு மாவு நன்கு வெந்திருப்பதை உறுதி செய்யவும்."
+  },
+  {
+    match: ["கருப்பு உளுந்து கஞ்சி", "களி"],
+    symptomLabels: ["கால்சியம் & எலும்பு வலிமை"],
+    prepTime: "20 நிமிடம்",
+    soakTime: "4 மணி நேரம்",
+    serving: "1 நபர் (1 கப்)",
+    title: "கருப்பு உளுந்து கஞ்சி / சிறுதானிய களி",
+    ingredients: [
+      "தோல் நீக்காத கருப்பு உளுந்து (அல்லது ராகி/கம்பு மாவு) – ⅓ கப் (50 கிராம்)",
+      "கைக்குத்தல் அரிசி – 1 டேபிள்ஸ்பூன், வெந்தயம் – ¼ டீஸ்பூன்",
+      "பூண்டு – 3 பல், சீரகம் – ½ டீஸ்பூன், உப்பு (அல்லது நாட்டுச்சர்க்கரை)"
+    ],
+    steps: [
+      "கருப்பு உளுந்து, அரிசி மற்றும் வெந்தயத்தை நன்கு கழுவி 4 மணி நேரம் ஊறவைத்து மையாக அரைக்கவும்.",
+      "பாத்திரத்தில் 2.5 கப் தண்ணீர் ஊற்றி, பூண்டு மற்றும் சீரகம் சேர்த்து கொதிக்க விடவும்.",
+      "அரைத்த விழுதைக் கட்டியில்லாமல் ஊற்றி 15 நிமிடம் கைவிடாமல் கிளறி நன்கு வேகவைத்து இறக்கவும்."
+    ],
+    substitutes: "• கருப்பு உளுந்துக்குப் பதிலாக: வறுத்து அரைத்த கருப்பு உளுந்து மாவு அல்லது ராகி மாவு.<br>• நாட்டுச்சர்க்கரைக்குப் பதிலாக: உப்பு, சீரகம், பூண்டு சேர்த்து காரக் கஞ்சியாகவும் செய்யலாம்.",
+    safety: "பச்சை மாவு வாடை போகும் வரை நன்கு வேகவைத்த பிறகே உட்கொள்ள வேண்டும்."
+  },
+  {
+    match: ["பிசிபேளாபாத்", "சாதம்", "புழுங்கல் அரிசி", "கைக்குத்தல் அரிசி", "சிவப்பு அரிசி"],
+    symptomLabels: ["மலச்சிக்கல்", "சமச்சீர் மதிய உணவு"],
+    prepTime: "30 நிமிடம்",
+    soakTime: "6–8 மணி நேரம்",
+    serving: "1 நபர் (1 கப் சாதம் + ½ கப் கூட்டு + ½ கப் தயிர்)",
+    title: "பாரம்பரிய அரிசி சாதம், கீரை & பயறு கூட்டு",
+    ingredients: [
+      "புழுங்கல் / கைக்குத்தல் / சிவப்பு அரிசி – ½ கப் (75 கிராம்)",
+      "கீரை (முருங்கைக்கீரை / பாலக்கீரை) – 1 கப், பருப்பு / ராஜ்மா / மொச்சை / கொள்ளு – 3 டேபிள்ஸ்பூன்",
+      "காய்கறிகள் (பீன்ஸ், கேரட், சுரைக்காய், பூசணிக்காய்), தயிர் – ½ கப், மஞ்சள் தூள், சீரகம், பூண்டு"
+    ],
+    steps: [
+      "அரிசியைக் கழுவி 30 நிமிடம் ஊறவைத்து நன்கு வேகவைத்து எடுக்கவும்.",
+      "ராஜ்மா, மொச்சை அல்லது கொள்ளுவை 6–8 மணி நேரம் ஊறவைத்து, குக்கரில் 4–5 விசில் வரை மென்மையாக வேகவைத்து தாளிக்கவும்.",
+      "கீரையை நன்கு கழுவி, பாசிப்பருப்பு, பூண்டு, சீரகம் மற்றும் மஞ்சள் தூள் சேர்த்து வேகவைத்து கீரைக் கூட்டு/மசியல் தயாரிக்கவும்."
+    ],
+    substitutes: "• கைக்குத்தல்/சிவப்பு அரிசிக்குப் பதிலாக: புழுங்கல் அரிசி, மாப்பிள்ளை சம்பா அல்லது வரகு/சாமை அரிசி.<br>• ராஜ்மாவுக்குப் பதிலாக: கொண்டைக்கடலை, மொச்சை அல்லது காராமணி.",
+    safety: "பயறு வகைகள் முழுமையாக மென்மையாக வெந்திருக்க வேண்டும்; தயிர் சேர்ப்பது செரிமானத்திற்கு உதவும்."
+  },
+  {
+    match: ["சுண்டல்", "கடலை", "சர்க்கரைவள்ளிக் கிழங்கு"],
+    symptomLabels: ["மலச்சிக்கல் & புரத சிற்றுண்டி"],
+    prepTime: "15 நிமிடம்",
+    soakTime: "6–8 மணி நேரம்",
+    serving: "1 நபர் (1 சிறிய கப்)",
+    title: "ஆவியில் வேகவைத்த பயறு சுண்டல் / சர்க்கரைவள்ளிக் கிழங்கு",
+    ingredients: [
+      "கொண்டைக்கடலை / பச்சைப்பயறு / காராமணி / வேர்க்கடலை – ⅓ கப் (அல்லது சர்க்கரைவள்ளிக் கிழங்கு – 1)",
+      "கடுகு, சீரகம், பெருங்காயம், கறிவேப்பிலை, துருவிய தேங்காய் – 1 டேபிள்ஸ்பூன், உப்பு"
+    ],
+    steps: [
+      "பயறு வகைகளை 6–8 மணி நேரம் ஊறவைத்து, உப்பு மற்றும் பெருங்காயம் சேர்த்து குக்கரில் மென்மையாக வேகவைக்கவும்.",
+      "கடாயில் சிறிது எண்ணெய் விட்டு கடுகு, சீரகம், கறிவேப்பிலை தாளித்து வெந்த பயறு மற்றும் தேங்காய்ப்பூ சேர்த்து கிளறவும்.",
+      "சர்க்கரைவள்ளிக் கிழங்கு எனில் நன்கு கழுவி இட்லி பாத்திரத்தில் 15 நிமிடம் ஆவியில் வேகவைத்து தோல் நீக்கி பரிமாறவும்."
+    ],
+    substitutes: "• கொண்டைக்கடலைக்குப் பதிலாக: பச்சைப்பயறு, பாசிப்பயறு, காராமணி அல்லது வேர்க்கடலை.<br>• தேங்காய்ப்பூவுக்குப் பதிலாக: துருவிய கேரட் மற்றும் கொத்தமல்லி.",
+    safety: "முளைகட்டிய பயறுகளை பச்சையாகச் சாப்பிடாமல் ஆவியில் வேகவைத்துச் சாப்பிடவும்."
+  },
+  {
+    match: ["சப்பாத்தி", "பாசிப்பருப்பு தோசை"],
+    symptomLabels: ["இலகுவான இரவு உணவு"],
+    prepTime: "20 நிமிடம்",
+    soakTime: "20 நிமிடம்",
+    serving: "1 நபர் (2 சப்பாத்தி அல்லது 2 தோசை)",
+    title: "முழு கோதுமை சப்பாத்தி / பாசிப்பருப்பு தோசை & கூட்டு",
+    ingredients: [
+      "முழு கோதுமை மாவு – ½ கப் (60 கிராம்) (அல்லது ஊறவைத்த பாசிப்பருப்பு – ⅓ கப்)",
+      "காய்கறி கூட்டு / சோயா சங்க்ஸ் / பருப்பு கடைசல், வெதுவெதுப்பான தண்ணீர், உப்பு"
+    ],
+    steps: [
+      "கோதுமை மாவில் உப்பு மற்றும் வெதுவெதுப்பான தண்ணீர் சேர்த்து மென்மையான மாவாக பிசைந்து 20 நிமிடம் ஊறவைத்து சப்பாத்திகளாக சுடவும்.",
+      "பாசிப்பருப்பு தோசை எனில் ஊறவைத்த பாசிப்பருப்பை இஞ்சி, சீரகத்துடன் அரைத்து தோசைகளாக வார்க்கவும்.",
+      "காய்கறி கூட்டு அல்லது பருப்பு கடைசலுடன் இரவு 8 மணிக்குள் சாப்பிடவும்."
+    ],
+    substitutes: "• கோதுமை மாவுக்குப் பதிலாக: சத்துமாவு கலந்த கோதுமை மாவு அல்லது பாசிப்பருப்பு மாவு.<br>• சோயா சங்க்ஸுக்குப் பதிலாக: பனீர் அல்லது வேகவைத்த பருப்பு கடைசல்.",
+    safety: "இரவு உணவை எண்ணெய் குறைவாகவும் எளிதில் செரிமானமாகக் கூடியதாகவும் வைத்துக்கொள்ளவும்."
+  },
+  {
+    match: ["முட்டை"],
+    symptomLabels: ["உயர் புரதம் & கோலின்"],
+    prepTime: "15 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 நபர் (1–2 முட்டை)",
+    title: "நன்கு வேகவைத்த முட்டை / முட்டை பொரியல் / கிரேவி",
+    ingredients: [
+      "முட்டை – 1 அல்லது 2",
+      "பொரியல்/கிரேவிக்கு: சின்ன வெங்காயம் – 4, தக்காளி – ½, மஞ்சள் தூள் – ¼ டீஸ்பூன், மிளகுத் தூள், சீரகத் தூள், கறிவேப்பிலை, உப்பு"
+    ],
+    steps: [
+      "வேகவைத்த முட்டைக்கு: முட்டையை முழுவதுமாக மூழ்கும் அளவு தண்ணீரில் வைத்து, கொதித்ததும் 10–12 நிமிடங்கள் நன்கு வேகவைக்கவும் (வெள்ளை மற்றும் மஞ்சள் கரு இரண்டும் முழுமையாகக் கெட்டியாக வேக வேண்டும்).",
+      "முட்டை பொரியல் / கிரேவிக்கு: கடாயில் 1 டீஸ்பூன் எண்ணெய் ஊற்றி வெங்காயம், தக்காளி, மஞ்சள் தூள், மிளகு-சீரகத் தூள் வதக்கி, நன்கு வெந்த முட்டையைச் சேர்த்து மேலும் சில நிமிடங்கள் வதக்கி இறக்கவும்."
+    ],
+    substitutes: "• கோழி முட்டைக்குப் பதிலாக: நாட்டுக்கோழி முட்டை (நன்கு வேகவைத்தது).<br>• சைவ மாற்றுப் பொருள்: பனீர் துண்டுகள் அல்லது வேகவைத்த கொண்டைக்கடலை.",
+    safety: "பச்சை முட்டை அல்லது திரவ நிலையில் உள்ள அரைவேக்காடு மஞ்சள் கருவை முற்றிலும் தவிர்க்கவும்."
+  },
+  {
+    match: ["மீன்"],
+    symptomLabels: ["ஒமேகா-3 & புரதம்"],
+    prepTime: "25 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 நபர் (2–3 துண்டுகள்)",
+    title: "மத்தி / நெத்திலி மீன் குழம்பு (நன்கு வேகவைத்தது)",
+    ingredients: [
+      "மத்தி மீன் அல்லது நெத்திலி மீன் – 150–200 கிராம் (நன்கு சுத்தம் செய்தது)",
+      "சின்ன வெங்காயம் – 8, தக்காளி – 1, பூண்டு – 5 பல், மஞ்சள் தூள் – ½ டீஸ்பூன், மிளகுத் தூள், சீரகம், புளி கரைசல், கறிவேப்பிலை, நல்லெண்ணெய்"
+    ],
+    steps: [
+      "மீனை மஞ்சள் தூள் மற்றும் உப்பு சேர்த்து 3–4 முறை நன்கு கழுவி சுத்தம் செய்யவும்.",
+      "கடாயில் நல்லெண்ணெய் ஊற்றி வெந்தயம், கடுகு, பூண்டு, சின்ன வெங்காயம் மற்றும் தக்காளி வதக்கவும்.",
+      "புளி கரைசல், மஞ்சள் தூள், குழம்பு மிளகாய்த்தூள், உப்பு சேர்த்து நன்கு கொதிக்க விடவும்.",
+      "கொதிக்கும் குழம்பில் மீனைச் சேர்த்து, மீன் சதை முழுமையாக வெந்து வாசனை வரும் வரை 10–12 நிமிடம் மிதமான தீயில் வேகவைத்து இறக்கவும்."
+    ],
+    substitutes: "• மத்தி மீனுக்குப் பதிலாக: நெத்திலி, காணாங்கெளுத்தி, ரோகு அல்லது கட்லா மீன்கள்.<br>• ஒமேகா-3 சைவ மாற்றுப் பொருள்: வால்நட் மற்றும் வறுத்த ஆளி விதை (Flax seeds).",
+    safety: "பச்சை/அரைவேக்காடு மீன் மற்றும் அதிக பாதரசம் கொண்ட பெரிய கடல் மீன்களை (சுறா, வஞ்சிரம்) தவிர்க்கவும்."
+  },
+  {
+    match: ["சிக்கன்"],
+    symptomLabels: ["புரதம் & நோய் எதிர்ப்பு சக்தி"],
+    prepTime: "25 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 நபர் (1 கப் சூப் / கிரேவி)",
+    title: "மிளகு சிக்கன் சூப் / சிக்கன் கிரேவி / ஸ்டூ",
+    ingredients: [
+      "தோல் நீக்கிய சிக்கன் துண்டுகள் – 150 கிராம் (நன்கு சுத்தம் செய்தது)",
+      "சின்ன வெங்காயம் – 6, தக்காளி – ½, இஞ்சி-பூண்டு விழுது – 1 டீஸ்பூன், மஞ்சள் தூள், மிளகுத் தூள், சீரகத் தூள், கறிவேப்பிலை, உப்பு"
+    ],
+    steps: [
+      "சிக்கனை மஞ்சள் தூள் சேர்த்து நன்கு கழுவி எடுத்துக்கொள்ளவும்.",
+      "சூப் / ஸ்டூவுக்கு: பாத்திரத்தில் 2 கப் தண்ணீர், இஞ்சி-பூண்டு விழுது, சின்ன வெங்காயம், மஞ்சள் தூள் மற்றும் சிக்கன் சேர்த்து மூடி வைத்து 15–20 நிமிடம் நன்கு வேகவைத்து, இறுதியில் மிளகுத் தூள் மற்றும் கறிவேப்பிலை சேர்க்கவும்.",
+      "கிரேவிக்கு: வெங்காயம், தக்காளி, மசாலா மற்றும் சிக்கனைச் சேர்த்து மூடி வைத்து, சிக்கன் முழுமையாக வெந்ததும் இறக்கவும்."
+    ],
+    substitutes: "• பிராய்லர் சிக்கனுக்குப் பதிலாக: தோல் நீக்கிய நாட்டுக்கோழி.<br>• சைவ மாற்றுப் பொருள்: சோயா சங்க்ஸ், பனீர் அல்லது காளான் (நன்கு சுத்தம் செய்து வேகவைத்தது).",
+    safety: "சிக்கன் துண்டுகள் எலும்பு அருகிலும் உள்ளே சிகப்பு நிறமின்றி முழுமையாக வேகவைத்திருப்பதை உறுதி செய்யவும்."
+  },
+  {
+    match: ["ஆட்டுக்கால்"],
+    symptomLabels: ["கால்சியம் & இரும்புச்சத்து"],
+    prepTime: "35 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 நபர் (1 கப் சூப்)",
+    title: "ஆட்டுக்கால் சூப் (நன்கு வேகவைத்தது)",
+    ingredients: [
+      "ஆட்டுக்கால் துண்டுகள் – 2 முதல் 3 (நன்கு சுத்தம் செய்தது)",
+      "சின்ன வெங்காயம் – 8, பூண்டு – 6 பல், தக்காளி – 1, மஞ்சள் தூள், மிளகு, சீரகம், கறிவேப்பிலை, உப்பு, தண்ணீர் – 3 கப்"
+    ],
+    steps: [
+      "ஆட்டுக்கால் துண்டுகளை மஞ்சள் தூள் சேர்த்து நன்கு கழுவி சுத்தம் செய்யவும்.",
+      "குக்கரில் ஆட்டுக்கால், சின்ன வெங்காயம், பூண்டு, தக்காளி, மஞ்சள் தூள், உப்பு மற்றும் 3 கப் தண்ணீர் சேர்த்து மூடவும்.",
+      "மிதமான தீயில் 6–8 விசில் (அல்லது எலும்பு மற்றும் சதை நன்கு வெந்து சாறு இறங்கும் வரை) வேகவைக்கவும்.",
+      "இறுதியில் இடித்த மிளகு, சீரகம் மற்றும் கறிவேப்பிலை சேர்த்து 2 நிமிடம் கொதிக்க வைத்து சூடாகப் பரிமாறவும்."
+    ],
+    substitutes: "• ஆட்டுக்காலுக்குப் பதிலாக: எலும்புடன் கூடிய மட்டன் துண்டுகள் அல்லது நாட்டுக்கோழி.<br>• சைவ மாற்றுப் பொருள்: கருப்பு உளுந்து கஞ்சி அல்லது முருங்கைக்கீரை-பாசிப்பருப்பு சூப்.",
+    safety: "அதிக காரம் மற்றும் எண்ணெய் இல்லாமல் நன்கு வேகவைத்து மிதமான அளவில் உட்கொள்ளவும்."
   }
-  if (title.includes("இடைவேளை")) {
-    if (food.includes("கொய்யாப்பழம்")) return "பேரிக்காய், ஆப்பிள் அல்லது பப்பாளி (நன்கு பழுத்தது) 1 சிறிய கிண்ணம்.";
-    if (food.includes("ஆப்பிள்")) return "கொய்யாப்பழம், பேரிக்காய் அல்லது மாதுளை 1 சிறிய கிண்ணம்.";
-    if (food.includes("ஆரஞ்சு")) return "சாத்துக்குடி (ஜூஸ் போடாமல் சுளைகளாக) அல்லது கொய்யாப்பழம்.";
-    if (food.includes("வாழைப்பழம்")) return "ஆப்பிள் அல்லது கொய்யாப்பழம் 1 (சர்க்கரை அளவு அதிகமாக இருந்தால் வாழைப்பழத்திற்குப் பதில் கொய்யா சிறந்தது).";
-    if (food.includes("மாதுளை")) return "ஆப்பிள் அல்லது கொய்யாப்பழம்.";
+];
+
+function getRecipeForMeal(mealText) {
+  for (const r of recipeDatabase) {
+    if (r.match.some(k => mealText.includes(k))) {
+      return r;
+    }
   }
-  if (title.includes("மாலை சிற்றுண்டி")) {
-    if (food.includes("கொண்டைக்கடலை")) return "பச்சைப்பயறு சுண்டல், காராமணி சுண்டல் அல்லது வேகவைத்த வேர்க்கடலை.";
-    if (food.includes("பச்சைப்பயறு") || food.includes("பாசிப்பயறு")) return "கொண்டைக்கடலை சுண்டல் அல்லது முளைகட்டிய பயறு வேகவைத்தது.";
-    if (food.includes("வேர்க்கடலை") || food.includes("வேகவைத்த கடலை")) return "கொண்டைக்கடலை சுண்டல் அல்லது பொட்டுக்கடலை + பாதாம் (4).";
-    if (food.includes("காராமணி")) return "பச்சைப்பயறு சுண்டல் அல்லது கொள்ளு சுண்டல்.";
-    if (food.includes("பொட்டுக்கடலை")) return "வேகவைத்த வேர்க்கடலை அல்லது வறுத்த மக்கானா (தாமரை விதை) 1 கப்.";
-  }
-  if (title.includes("6:30") || food.includes("பால்") || food === "தயிர்") {
-    if (food.includes("பால்")) return "கெட்டித் தயிர் 1 கப் அல்லது மோர் 1 டம்ளர் (பால் குடிக்கப் பிடிக்கவில்லை என்றால்).";
-    if (food.includes("தயிர்")) return "காய்ச்சிய வெதுவெதுப்பான பால் 1 டம்ளர் அல்லது மோர்.";
-  }
-  if (title.includes("மதிய உணவு")) {
-    return "அன்றைய காய் கையில் இல்லையென்றால் சுரைக்காய், பூசணிக்காய், புடலங்காய், பீர்க்கங்காய், வெண்டைக்காய் அல்லது ஏதேனும் ஒரு கீரையை மாற்றிக்கொள்ளலாம். அரிசிக்குப் பதிலாக 2 கோதுமை சப்பாத்தி அல்லது சிறுதானிய சாதமும் சாப்பிடலாம்.";
-  }
-  if (food.includes("தோசை") || food.includes("இட்லி") || food.includes("அடை")) {
-    return "அந்த சிறுதானிய மாவு இல்லையென்றால் கைவசம் உள்ள வேறு சிறுதானிய தோசை (ராகி / கம்பு / தினை / சாமை) அல்லது 2 முழு கோதுமை சப்பாத்தி + பருப்பு/காய்கறி சாப்பிடலாம்.";
-  }
-  if (food.includes("பொங்கல்") || food.includes("உப்புமா") || food.includes("களி")) {
-    return "தினை, சாமை, வரகு, குதிரைவாலி ஆகியவற்றில் வீட்டில் உள்ள எந்த சிறுதானியத்தை வேண்டுமானாலும் பயன்படுத்தி உப்புமா அல்லது பொங்கலாகச் செய்யலாம்.";
-  }
-  if (food.includes("இடியாப்பம்")) {
-    return "இடியாப்பம் செய்ய நேரமில்லையென்றால் அதே சிறுதானிய மாவில் தோசை அல்லது அடை செய்து சாப்பிடலாம்.";
-  }
-  if (food.includes("சப்பாத்தி")) {
-    return "கோதுமை தோசை 2 அல்லது ராகி தோசை 2 + சாம்பார் / பருப்பு கடைசல்.";
-  }
-  return "கைவசம் உள்ள வேறு சிறுதானிய உணவு அல்லது கோதுமை சப்பாத்தி + காய்கறி/பருப்பு.";
+  return {
+    title: mealText,
+    prepTime: "10–15 நிமிடம்",
+    soakTime: "தேவையில்லை",
+    serving: "1 நபர் அளவு",
+    ingredients: ["புதிய காய்கறிகள் / பழங்கள் / பால் பொருட்கள்", "தேவையான அளவு சுத்தமான தண்ணீர்"],
+    steps: [
+      "பொருட்களை சுத்தமாக கழுவி, காய்கறிகள் மற்றும் தானியங்களை நன்கு வேகவைத்துச் சமைக்கவும்.",
+      "பழங்களை ஜூஸாக அல்லாமல் முழுப் பழமாக நறுக்கிச் சாப்பிடவும்."
+    ],
+    substitutes: "• பருவகாலத்திற்கு ஏற்ப கிடைக்கும் உள்ளூர் பழங்கள் (கொய்யா, ஆப்பிள், ஆரஞ்சு, மாதுளை) மற்றும் காய்கறிகளை மாற்றிக் கொள்ளலாம்.",
+    safety: "காய்ச்சிய பால் மற்றும் நன்கு சமைத்த உணவுகளை மட்டுமே உட்கொள்ளவும்."
+  };
 }
 
-function getRecipeDetails(time, title, food) {
-  let ingredients = [];
-  let steps = [];
-  let note = "அதிக எண்ணெய், காரம் மற்றும் உப்பைக் குறைத்துச் சமைக்கவும். நன்கு வெந்த பிறகே பரிமாறவும்.";
-  let swap = getAlternativeFood(title, food);
+function renderRecipeDetailsHtml(recipe, subHeaderHtml = "") {
+  const symHtml = (recipe.symptomLabels && recipe.symptomLabels.length)
+    ? `<div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap">${recipe.symptomLabels.map(s => `<span class="meta-pill symptom">✨ ${s}</span>`).join("")}</div>`
+    : "";
 
-  if (food.includes("தண்ணீர்")) {
-    ingredients = ["சுத்தமான காய்ச்சி ஆறிய வெதுவெதுப்பான தண்ணீர் – 1 பெரிய டம்ளர் (250 மி.லி)"];
-    steps = [
-      "காலையில் எழுந்தவுடன் பல் துலக்கிய பிறகு, வெறும் வயிற்றில் 1 டம்ளர் வெதுவெதுப்பான தண்ணீரை மெதுவாக உட்கொள்ளவும்.",
-      "ஒரே மூச்சில் குடிக்காமல், உட்கார்ந்த நிலையில் சிறிது சிறிதாகப் பருகவும்."
-    ];
-    note = "காலையில் வெதுவெதுப்பான நீர் அருந்துவது செரிமானத்தைச் சீராக்கும் மற்றும் கர்ப்பகால மலச்சிக்கலைத் தவிர்க்க உதவும்.";
-    return { ingredients, steps, note, swap };
-  }
-
-  if (title.includes("இடைவேளை")) {
-    if (food.includes("கொய்யாப்பழம்")) {
-      ingredients = ["நன்கு பழுத்த கொய்யாப்பழம் – 1 (நடுத்தர அளவு)"];
-      steps = [
-        "கொய்யாப்பழத்தை ஓடும் நீரில் நன்றாகக் கழுவி, மேல் மற்றும் அடிப் பகுதியை நறுக்கவும்.",
-        "சிறிய துண்டுகளாக நறுக்கி, விதைகளை நன்றாக மென்று சாப்பிடவும் (உப்பு அல்லது மிளகாய்த்தூள் சேர்ப்பதைத் தவிர்க்கவும்)."
-      ];
-      note = "கொய்யாப்பழத்தில் நார்ச்சத்து மற்றும் வைட்டமின்-சி அதிகம் உள்ளதால் சர்க்கரை அளவைக் கட்டுக்குள் வைக்க உதவும்.";
-    } else if (food.includes("ஆப்பிள்")) {
-      ingredients = ["நல்ல தரமான ஆப்பிள் – 1"];
-      steps = [
-        "ஆப்பிளை வெதுவெதுப்பான நீரில் நன்கு கழுவித் துடைக்கவும் (மெழுகு பூச்சு இருந்தால் தோலைச் சீவிவிடவும்).",
-        "விதைப் பகுதியை நீக்கிவிட்டு, மெல்லிய துண்டுகளாக நறுக்கி உடனே சாப்பிடவும்."
-      ];
-      note = "பழங்களை ஜூஸாக அரைக்காமல், துண்டுகளாக மென்று சாப்பிடுவதே முழு நார்ச்சத்தைத் தரும்.";
-    } else if (food.includes("ஆரஞ்சு")) {
-      ingredients = ["புதிய ஆரஞ்சுப் பழம் – 1"];
-      steps = [
-        "ஆரஞ்சுப் பழத்தின் தோலை உரித்து, சுளைகளைத் தனித்தனியாகப் பிரிக்கவும்.",
-        "சுளைகளில் உள்ள விதைகளை நீக்கிவிட்டு, நார்ப் பகுதியுடன் அப்படியே சாப்பிடவும்."
-      ];
-      note = "இதில் உள்ள ஃபோலேட் மற்றும் வைட்டமின்-சி இரும்புச்சத்து உடலில் உறிஞ்சப்பட உதவும்.";
-    } else if (food.includes("வாழைப்பழம்")) {
-      ingredients = ["நன்கு பழுத்த வாழைப்பழம் (ஏலக்கி அல்லது செவ்வாழை) – 1"];
-      steps = ["தோலை உரித்துச் சிறிய துண்டுகளாகவோ அல்லது முழுப் பழமாகவோ மெதுவாக மென்று சாப்பிடவும்."];
-      note = "அளவுக்கதிகமாக சாப்பிடாமல் ஒரு சிறிய வாழைப்பழம் மட்டும் எடுத்துக்கொள்ளவும்.";
-    } else if (food.includes("மாதுளை")) {
-      ingredients = ["மாதுளம்பழம் – 1 (சுமார் 1 சிறிய கப் முத்துக்கள்)"];
-      steps = [
-        "மாதுளம்பழத்தை இரண்டாக நறுக்கி, முத்துக்களைச் சுத்தமாக உதிர்த்துக் கொள்ளவும்.",
-        "ஜூஸ் போடாமல், முத்துக்களை அப்படியே ஸ்பூன் கொண்டு மென்று சாப்பிடவும்."
-      ];
-      note = "மாதுளை ஹீமோகுளோபின் அளவை அதிகரிக்க மிகவும் உதவும்.";
-    }
-    return { ingredients, steps, note, swap };
-  }
-
-  if (title.includes("மாலை சிற்றுண்டி")) {
-    if (food.includes("கொண்டைக்கடலை")) {
-      ingredients = [
-        "கொண்டைக்கடலை (கருப்பு அல்லது வெள்ளை) – ½ கப்",
-        "கடுகு, உளுத்தம்பருப்பு – தலா ¼ டீஸ்பூன்",
-        "கறிவேப்பிலை – சிறிதளவு, பச்சை மிளகாய் – 1 (கீறியது)",
-        "துருவிய தேங்காய் – 1 டேபிள்ஸ்பூன், எண்ணெய் – 1 டீஸ்பூன், உப்பு – தேவையான அளவு"
-      ];
-      steps = [
-        "கொண்டைக்கடலையை 8 மணி நேரம் நன்கு ஊறவைத்து, கழுவி குக்கரில் தேவையான தண்ணீர் மற்றும் சிறிது உப்பு சேர்த்து 4-5 விசில் வரை நன்கு வேகவைக்கவும்.",
-        "வாணலியில் 1 டீஸ்பூன் எண்ணெய் ஊற்றி கடுகு, உளுத்தம்பருப்பு, கறிவேப்பிலை, பச்சை மிளகாய் தாளிக்கவும்.",
-        "வேகவைத்த கடலையைச் சேர்த்து 2 நிமிடம் கிளறி, இறுதியில் துருவிய தேங்காய் தூவி இறக்கவும்."
-      ];
-      note = "கடலை நன்கு மென்மையாக வெந்திருக்க வேண்டும்; இல்லையெனில் வாயுத் தொல்லை ஏற்படலாம்.";
-    } else if (food.includes("பச்சைப்பயறு") || food.includes("பாசிப்பயறு")) {
-      ingredients = [
-        "முழு பச்சைப்பயறு – ½ கப்",
-        "கடுகு, சீரகம் – தலா ¼ டீஸ்பூன்",
-        "கறிவேப்பிலை – சிறிதளவு, இஞ்சி துருவல் – ½ டீஸ்பூன்",
-        "துருவிய தேங்காய் – 1 டேபிள்ஸ்பூன், எண்ணெய் – 1 டீஸ்பூன், உப்பு – சிறிதளவு"
-      ];
-      steps = [
-        "பச்சைப்பயறை 4-5 மணி நேரம் ஊறவைத்து, குக்கரில் 2 விசில் வரை (குழையாமல்) வேகவைத்து தண்ணீரை வடிக்கவும்.",
-        "வாணலியில் எண்ணெய் விட்டு கடுகு, சீரகம், இஞ்சி, கறிவேப்பிலை தாளிக்கவும்.",
-        "வேகவைத்த பயறு, உப்பு சேர்த்து 2 நிமிடம் பிரட்டி தேங்காய்த் துருவல் சேர்த்துப் பரிமாறவும்."
-      ];
-      note = "பச்சைப்பயறு எளிதில் செரிமானமாகும் சிறந்த புரத உணவாகும்.";
-    } else if (food.includes("வேர்க்கடலை") || food.includes("வேகவைத்த கடலை")) {
-      ingredients = [
-        "பச்சை வேர்க்கடலை (தோலுடன் அல்லது உரித்தது) – ½ கப்",
-        "உப்பு – சிறிதளவு, கடுகு & கறிவேப்பிலை – தாளிக்க (விரும்பினால்)"
-      ];
-      steps = [
-        "வேர்க்கடலையை நன்கு கழுவி, குக்கரில் தேவையான நீர் மற்றும் சிறிது உப்பு சேர்த்து 3-4 விசில் வரை வேகவைக்கவும்.",
-        "தண்ணீரை வடித்துவிட்டு அப்படியே சாப்பிடலாம் அல்லது கடுகு, கறிவேப்பிலை தாளித்துச் சாப்பிடலாம்."
-      ];
-      note = "வறுத்த வேர்க்கடலையை விட வேகவைத்த வேர்க்கடலை செரிமானத்திற்கு சிறந்தது.";
-    } else if (food.includes("காராமணி")) {
-      ingredients = [
-        "காராமணி (தட்டைப்பயறு) – ½ கப்",
-        "கடுகு, உளுத்தம் பருப்பு – ¼ டீஸ்பூன், கறிவேப்பிலை – சிறிதளவு",
-        "துருவிய தேங்காய் – 1 டேபிள்ஸ்பூன், எண்ணெய் – 1 டீஸ்பூன், உப்பு – சிறிதளவு"
-      ];
-      steps = [
-        "காராமணியை 4 மணி நேரம் ஊறவைத்து, குக்கரில் 3 விசில் வரை நன்கு வேகவைத்து நீரை வடிக்கவும்.",
-        "வாணலியில் எண்ணெய் ஊற்றி கடுகு, உளுந்து, கறிவேப்பிலை தாளித்து, பயறு மற்றும் உப்பு சேர்த்து கிளறவும்.",
-        "இறுதியில் தேங்காய்த் துருவல் சேர்த்து இறக்கவும்."
-      ];
-      note = "காராமணியில் இரும்புச்சத்து மற்றும் நார்ச்சத்து நிறைந்துள்ளது.";
-    } else if (food.includes("பொட்டுக்கடலை")) {
-      ingredients = [
-        "வறுத்த பொட்டுக்கடலை – 3 டேபிள்ஸ்பூன்",
-        "ஏதேனும் ஒரு பழம் (கொய்யா அல்லது ஆப்பிள் துண்டுகள்) – ½ கப்"
-      ];
-      steps = [
-        "பொட்டுக்கடலையை சுத்தம் செய்து ஒரு கிண்ணத்தில் எடுத்துக்கொள்ளவும்.",
-        "அதனுடன் நறுக்கிய பழத் துண்டுகளைச் சேர்த்து நன்கு மென்று சாப்பிடவும் (வெல்லம்/சர்க்கரை சேர்க்க வேண்டாம்)."
-      ];
-      note = "மாலை நேரப் பசியைப் போக்கும் எளிய மற்றும் சத்தான சிற்றுண்டி.";
-    }
-    return { ingredients, steps, note, swap };
-  }
-
-  if (title.includes("6:30") || food === "பால்" || food.includes("ஒரு டம்ளர் பால்") || food === "தயிர்" || food.includes("பாதாம்")) {
-    if (food.includes("பாதாம்")) {
-      ingredients = [
-        "நன்கு காய்ச்சிய பால் – 1 டம்ளர் (200 மி.லி)",
-        "ஊறவைத்து தோல் உரித்த பாதாம் – 4 முதல் 5"
-      ];
-      steps = [
-        "பாதாமை காலையிலேயே தண்ணீரில் ஊறவைத்து, மாலையில் தோலை உரித்துக்கொள்ளவும்.",
-        "பாலை நன்கு காய்ச்சி வெதுவெதுப்பான சூட்டில் சர்க்கரை சேர்க்காமல் குடிக்கவும்; அதனுடன் பாதாமை நன்கு மென்று சாப்பிடவும்."
-      ];
-      note = "பாதாமை எப்போதும் ஊறவைத்து தோல் உரித்து சாப்பிடுவது சத்துக்கள் எளிதில் உடலில் சேர உதவும்.";
-    } else if (food.includes("பால்")) {
-      ingredients = [
-        "சுத்தமான பசும்பால் அல்லது டோன்ட் பால் – 1 டம்ளர் (200 மி.லி)",
-        "மஞ்சள் தூள் – 1 சிட்டிகை (விரும்பினால்)"
-      ];
-      steps = [
-        "காய்ச்சாத பாலைத் தவிர்த்து, பாலை நன்கு கொதிக்க வைத்து இறக்கவும்.",
-        "வெதுவெதுப்பான சூட்டில் வெள்ளைச் சர்க்கரை சேர்க்காமல் அருந்தவும்."
-      ];
-      note = "பால் கால்சியம் மற்றும் புரதச்சத்துக்கான முக்கிய ஆதாரம்.";
-    } else if (food.includes("தயிர்")) {
-      ingredients = ["வீட்டில் உறை ஊற்றிய புதிய கெட்டித் தயிர் – 1 சிறிய கப்"];
-      steps = ["புளிப்பு அதிகமில்லாத புதிய தயிரை அப்படியே அல்லது சிறிது சீரகத்தூள் சேர்த்துச் சாப்பிடவும்."];
-      note = "தயிர் குடல் ஆரோக்கியத்திற்கும் செரிமானத்திற்கும் மிகவும் நல்லது.";
-    }
-    return { ingredients, steps, note, swap };
-  }
-
-  if (food.includes("ராகி தோசை")) {
-    ingredients = [
-      "ராகி மாவு (கேழ்வரகு) – 1 கப்",
-      "இட்லி மாவு அல்லது அரிசி மாவு – ¼ கப்",
-      "பொடியாக நறுக்கிய சின்ன வெங்காயம் – 2 டேபிள்ஸ்பூன்",
-      "சீரகம் – ½ டீஸ்பூன், கறிவேப்பிலை, கொத்தமல்லி – சிறிதளவு",
-      "உப்பு & தண்ணீர் – தேவையான அளவு, நல்லெண்ணெய் – 1 டீஸ்பூன்"
-    ];
-    steps = [
-      "ஒரு பாத்திரத்தில் ராகி மாவு, இட்லி மாவு, உப்பு மற்றும் தேவையான அளவு தண்ணீர் சேர்த்து தோசை மாவு பதத்திற்குக் கரைக்கவும்.",
-      "அதில் நறுக்கிய வெங்காயம், சீரகம், கறிவேப்பிலை சேர்த்து 15 நிமிடம் ஊறவிடவும்.",
-      "தோசைக்கல்லில் மாவை மெல்லியதாக ஊற்றி, சுற்றிலும் சில துளிகள் நல்லெண்ணெய் விட்டு இருபுறமும் நன்கு வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("கம்பு இட்லி")) {
-    ingredients = [
-      "கம்பு – 1 கப், இட்லி அரிசி – ½ கப்",
-      "உளுத்தம்பருப்பு – ½ கப், வெந்தயம் – ½ டீஸ்பூன்",
-      "உப்பு – தேவையான அளவு"
-    ];
-    steps = [
-      "கம்பு, இட்லி அரிசி மற்றும் வெந்தயத்தை நன்கு கழுவி 5 மணி நேரம் ஊறவைக்கவும். உளுந்தை தனியாக 2 மணி நேரம் ஊறவைக்கவும்.",
-      "முதலில் உளுந்தை மிருதுவாக அரைத்து, பின்னர் கம்பு-அரிசியை சற்று கொரகொரப்பாக அரைத்து உப்பு சேர்த்து கரைக்கவும்.",
-      "மாவை 8 மணி நேரம் புளிக்க வைத்து, இட்லி தட்டில் ஊற்றி 10-12 நிமிடங்கள் ஆவியில் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("தினை பொங்கல்")) {
-    ingredients = [
-      "தினை அரிசி – ½ கப், பாசிப்பருப்பு – ¼ கப்",
-      "மிளகு, சீரகம் – தலா ½ டீஸ்பூன்",
-      "இஞ்சி துருவல் – ½ டீஸ்பூன், கறிவேப்பிலை – சிறிதளவு",
-      "நெய் – 1 டீஸ்பூன், உப்பு – தேவையான அளவு"
-    ];
-    steps = [
-      "தினை அரிசி மற்றும் பாசிப்பருப்பை நன்கு கழுவி 20 நிமிடம் ஊறவைக்கவும்.",
-      "குக்கரில் 3 கப் தண்ணீர், உப்பு, இஞ்சி சேர்த்து 4 விசில் வரை நன்கு குழைய வேகவிடவும்.",
-      "சிறிய கரண்டியில் 1 டீஸ்பூன் நெய் விட்டு மிளகு, சீரகம், கறிவேப்பிலை தாளித்து பொங்கலில் கொட்டிக் கிளறவும்."
-    ];
-  } else if (food.includes("சாமை உப்புமா")) {
-    ingredients = [
-      "சாமை அரிசி – ½ கப்",
-      "நறுக்கிய காய்கறிகள் (கேரட், பீன்ஸ், பட்டாணி) – ½ கப்",
-      "வெங்காயம் – 1, பச்சை மிளகாய் – 1, இஞ்சி – சிறிய துண்டு",
-      "கடுகு, உளுந்து, கடலைப்பருப்பு – தலா ¼ டீஸ்பூன், கறிவேப்பிலை",
-      "எண்ணெய் – 1.5 டீஸ்பூன், தண்ணீர் – 1.25 கப், உப்பு – தேவையான அளவு"
-    ];
-    steps = [
-      "சாமை அரிசியை 2 முறை கழுவி 15 நிமிடம் ஊறவைத்து நீரை வடிக்கவும்.",
-      "வாணலியில் எண்ணெய் ஊற்றி கடுகு, உளுந்து, கடலைப்பருப்பு, வெங்காயம், பச்சை மிளகாய், இஞ்சி, கறிவேப்பிலை வதக்கவும்.",
-      "காய்கறிகளைச் சேர்த்து 2 நிமிடம் வதக்கி, 1.25 கப் தண்ணீர் மற்றும் உப்பு சேர்த்து கொதிக்கவிடவும்.",
-      "தண்ணீர் கொதிக்கும்போது சாமை அரிசியைச் சேர்த்து, அடுப்பை மிதமான தீயில் வைத்து மூடிபோட்டு 10 நிமிடம் வேகவைத்து இறக்கவும்."
-    ];
-  } else if (food.includes("வரகு பொங்கல்")) {
-    ingredients = [
-      "வரகு அரிசி – ½ கப், பாசிப்பருப்பு – ¼ கப்",
-      "மிளகு, சீரகம் – தலா ½ டீஸ்பூன், இஞ்சி – ½ டீஸ்பூன்",
-      "கறிவேப்பிலை – சிறிதளவு, நெய் – 1 டீஸ்பூன், உப்பு – தேவையான அளவு"
-    ];
-    steps = [
-      "வரகு அரிசி மற்றும் பாசிப்பருப்பை கழுவி 20 நிமிடம் ஊறவைக்கவும்.",
-      "குக்கரில் 3 கப் நீர், உப்பு, இஞ்சி சேர்த்து 4 விசில் வரை வேகவைக்கவும்.",
-      "நெய்யில் மிளகு, சீரகம், கறிவேப்பிலை தாளித்து பொங்கலுடன் சேர்த்துக் கிளறிப் பரிமாறவும்."
-    ];
-  } else if (food.includes("குதிரைவாலி உப்புமா")) {
-    ingredients = [
-      "குதிரைவாலி அரிசி – ½ கப்",
-      "பொடியாக நறுக்கிய காய்கறிகள் (கேரட், பீன்ஸ்) – ½ கப்",
-      "வெங்காயம் – 1, பச்சை மிளகாய் – 1, கடுகு, உளுந்து, கறிவேப்பிலை",
-      "எண்ணெய் – 1.5 டீஸ்பூன், தண்ணீர் – 1.25 கப், உப்பு – தேவையான அளவு"
-    ];
-    steps = [
-      "குதிரைவாலியை நன்கு கழுவி 15 நிமிடம் ஊறவைக்கவும்.",
-      "வாணலியில் எண்ணெய் விட்டு கடுகு, உளுந்து, வெங்காயம், பச்சை மிளகாய், கறிவேப்பிலை மற்றும் காய்கறிகளை வதக்கவும்.",
-      "தண்ணீர் மற்றும் உப்பு சேர்த்து கொதித்ததும் குதிரைவாலியைப் போட்டு மூடி வைத்து 10 நிமிடம் நன்கு வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("ராகி இட்லி")) {
-    ingredients = ["ராகி மாவு – 1 கப், இட்லி மாவு – 1 கப்", "உப்பு – தேவையான அளவு"];
-    steps = [
-      "புளித்த இட்லி மாவுடன் ராகி மாவு மற்றும் தேவையான அளவு தண்ணீர், உப்பு சேர்த்து கட்டியில்லாமல் கலக்கவும்.",
-      "இந்த மாவை 30 நிமிடம் மூடி வைக்கவும்.",
-      "இட்லி தட்டில் எண்ணெய் தடவி மாவை ஊற்றி 10-12 நிமிடங்கள் ஆவியில் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("கம்பு களி")) {
-    ingredients = ["கம்பு மாவு – ½ கப்", "தண்ணீர் – 1.5 கப்", "உப்பு – ¼ டீஸ்பூன்"];
-    steps = [
-      "அடிகனமான பாத்திரத்தில் 1.5 கப் தண்ணீர் ஊற்றி உப்பு சேர்த்து கொதிக்கவிடவும்.",
-      "தண்ணீர் கொதிக்கும்போது அடுப்பைக் குறைத்து, கம்பு மாவைச் சிறிது சிறிதாகத் தூவி கட்டியில்லாமல் மரக்கரண்டியால் கிளறவும்.",
-      "மூடிபோட்டு குறைந்த தீயில் 8-10 நிமிடங்கள் நன்கு வேகவைத்து, ஈரக்கையால் உருண்டைகளாகப் பிடித்து பருப்பு கடைசலுடன் பரிமாறவும்."
-    ];
-  } else if (food.includes("தினை தோசை")) {
-    ingredients = ["தினை அரிசி – 1 கப், உளுத்தம்பருப்பு – ¼ கப்", "வெந்தயம் – ½ டீஸ்பூன், உப்பு – தேவையான அளவு"];
-    steps = [
-      "தினை, உளுந்து, வெந்தயம் ஆகியவற்றை 4 மணி நேரம் ஊறவைத்து நன்கு மிருதுவாக அரைக்கவும்.",
-      "உப்பு சேர்த்து 6-8 மணி நேரம் புளிக்கவிடவும்.",
-      "தோசைக்கல்லில் மெல்லிய தோசைகளாக ஊற்றி இருபுறமும் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("வரகு உப்புமா")) {
-    ingredients = [
-      "வரகு அரிசி – ½ கப், காய்கறிகள் – ½ கப்",
-      "வெங்காயம் – 1, பச்சை மிளகாய் – 1, கடுகு, உளுந்து, கறிவேப்பிலை",
-      "எண்ணெய் – 1.5 டீஸ்பூன், தண்ணீர் – 1.25 கப், உப்பு – தேவையான அளவு"
-    ];
-    steps = [
-      "வரகு அரிசியை கழுவி 15 நிமிடம் ஊறவைக்கவும்.",
-      "வாணலியில் தாளிப்புப் பொருட்கள், வெங்காயம், காய்கறிகளை வதக்கி 1.25 கப் நீர் மற்றும் உப்பு சேர்க்கவும்.",
-      "கொதித்ததும் வரகு அரிசியைச் சேர்த்து குறைந்த தீயில் 10 நிமிடம் மூடி வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("குதிரைவாலி பொங்கல்")) {
-    ingredients = [
-      "குதிரைவாலி அரிசி – ½ கப், பாசிப்பருப்பு – ¼ கப்",
-      "மிளகு, சீரகம் – தலா ½ டீஸ்பூன், இஞ்சி, கறிவேப்பிலை",
-      "நெய் – 1 டீஸ்பூன், உப்பு – தேவையான அளவு"
-    ];
-    steps = [
-      "குதிரைவாலி மற்றும் பாசிப்பருப்பை கழுவி 20 நிமிடம் ஊறவைக்கவும்.",
-      "குக்கரில் 3 கப் நீர், உப்பு சேர்த்து 4 விசில் வரை வேகவைக்கவும்.",
-      "நெய்யில் மிளகு, சீரகம், இஞ்சி, கறிவேப்பிலை தாளித்து பொங்கலில் சேர்த்துக் கிளறவும்."
-    ];
-  } else if (food.includes("சாமை இடியாப்பம்")) {
-    ingredients = ["சாமை இடியாப்ப மாவு (வறுத்தது) – 1 கப்", "கொதிக்கும் தண்ணீர் – சுமார் 1 கப்", "உப்பு – ¼ டீஸ்பூன், நல்லெண்ணெய் – ½ டீஸ்பூன்"];
-    steps = [
-      "சாமை மாவில் உப்பு சேர்த்து, கொதிக்கும் நீரைச் சிறிது சிறிதாக ஊற்றி கரண்டியால் கிளறவும்.",
-      "கை பொறுக்கும் சூட்டில் எண்ணெய் தடவி மென்மையான மாவாகப் பிசையவும்.",
-      "இடியாப்ப அச்சில் மாவை நிரப்பி, இட்லி தட்டில் பிழிந்து 7-8 நிமிடங்கள் ஆவியில் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("ராகி களி")) {
-    ingredients = ["ராகி மாவு – ½ கப்", "தண்ணீர் – 1.5 கப்", "உப்பு – ¼ டீஸ்பூன்"];
-    steps = [
-      "பாத்திரத்தில் 1.5 கப் தண்ணீர் மற்றும் உப்பு சேர்த்து நன்கு கொதிக்கவிடவும்.",
-      "தீயைக் குறைத்து ராகி மாவைச் சேர்த்து கட்டியில்லாமல் நன்கு கிளறவும்.",
-      "மூடி வைத்து 8 நிமிடங்கள் மிதமான தீயில் வேகவைத்து உருண்டைகளாகப் பிடிக்கவும்."
-    ];
-  } else if (food.includes("வரகு இட்லி")) {
-    ingredients = ["வரகு அரிசி – 1 கப், இட்லி அரிசி – ½ கப்", "உளுத்தம்பருப்பு – ½ கப், வெந்தயம் – ½ டீஸ்பூன், உப்பு"];
-    steps = [
-      "வரகு, அரிசி, வெந்தயத்தை 4 மணி நேரமும், உளுந்தை 2 மணி நேரமும் ஊறவைத்து தனித்தனியாக அரைக்கவும்.",
-      "உப்பு சேர்த்து 8 மணி நேரம் புளிக்க வைத்து இட்லிகளாக ஊற்றி 10 நிமிடம் ஆவியில் வேகவைக்கவும்."
-    ];
-  } else if (food.includes("சாமை பொங்கல்")) {
-    ingredients = ["சாமை அரிசி – ½ கப், பாசிப்பருப்பு – ¼ கப்", "மிளகு, சீரகம் – தலா ½ டீஸ்பூன், இஞ்சி, கறிவேப்பிலை, நெய் – 1 டீஸ்பூன்"];
-    steps = [
-      "சாமை மற்றும் பாசிப்பருப்பை 20 நிமிடம் ஊறவைத்து, குக்கரில் 3 கப் நீர் மற்றும் உப்பு சேர்த்து 4 விசில் வேகவைக்கவும்.",
-      "நெய்யில் மிளகு, சீரகம், இஞ்சி, கறிவேப்பிலை தாளித்து பொங்கலில் சேர்த்துப் பரிமாறவும்."
-    ];
-  } else if (food.includes("கம்பு தோசை")) {
-    ingredients = ["கம்பு மாவு – 1 கப், இட்லி மாவு – ½ கப்", "சீரகம் – ½ டீஸ்பூன், வெங்காயம் – 2 டேபிள்ஸ்பூன், உப்பு"];
-    steps = [
-      "கம்பு மாவுடன் இட்லி மாவு, உப்பு, சீரகம், நறுக்கிய வெங்காயம் மற்றும் தேவையான தண்ணீர் சேர்த்து தோசை மாவு பதத்திற்குக் கரைக்கவும்.",
-      "15 நிமிடம் கழித்து சூடான தோசைக்கல்லில் ஊற்றி இருபுறமும் நன்கு வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("ராகி இடியாப்பம்")) {
-    ingredients = ["வறுத்த ராகி மாவு – 1 கப்", "கொதிக்கும் தண்ணீர் – 1 கப், உப்பு – ¼ டீஸ்பூன், எண்ணெய் – ½ டீஸ்பூன்"];
-    steps = [
-      "ராகி மாவில் உப்பு சேர்த்து, கொதிக்கும் நீரை ஊற்றி கரண்டியால் கிளறி மூடி வைக்கவும்.",
-      "சூடு சற்று ஆறியதும் எண்ணெய் தொட்டு மென்மையாகப் பிசைந்து இடியாப்ப அச்சில் பிழியவும்.",
-      "ஆவியில் 8 நிமிடங்கள் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("குதிரைவாலி இடியாப்பம்")) {
-    ingredients = ["வறுத்த குதிரைவாலி மாவு – 1 கப்", "கொதிக்கும் தண்ணீர் – 1 கப், உப்பு – ¼ டீஸ்பூன்"];
-    steps = [
-      "மாவில் உப்பு சேர்த்து கொதிக்கும் நீரை ஊற்றி கிளறி 5 நிமிடம் மூடி வைக்கவும்.",
-      "மென்மையாகப் பிசைந்து இடியாப்ப தட்டில் பிழிந்து 8 நிமிடங்கள் ஆவியில் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("காய்கறி சப்பாத்தி") || food.includes("கோதுமை சப்பாத்தி")) {
-    ingredients = [
-      "முழு கோதுமை மாவு – 1 கப்",
-      "துருவிய கேரட் / சுரைக்காய் / கீரை (காய்கறி சப்பாத்திக்கு) – ⅓ கப்",
-      "வெதுவெதுப்பான தண்ணீர் – தேவையான அளவு, உப்பு – சிறிதளவு, எண்ணெய் – 1 டீஸ்பூன்"
-    ];
-    steps = [
-      "கோதுமை மாவுடன் துருவிய காய்கறி, உப்பு மற்றும் வெதுவெதுப்பான நீர் சேர்த்து மென்மையாகப் பிசைந்து 20 நிமிடம் ஊறவிடவும்.",
-      "சிறிய உருண்டைகளாகப் பிரித்து சப்பாத்திகளாகத் தேய்க்கவும்.",
-      "சூடான தவாவில் போட்டு இருபுறமும் நன்கு வேகவைத்து எடுக்கவும் (அதிக எண்ணெய்/நெய் தவிர்க்கவும்)."
-    ];
-  } else if (food.includes("கோதுமை தோசை")) {
-    ingredients = [
-      "முழு கோதுமை மாவு – 1 கப்",
-      "துருவிய கேரட், நறுக்கிய வெங்காயம், கறிவேப்பிலை – ½ கப்",
-      "சீரகம் – ½ டீஸ்பூன், உப்பு & தண்ணீர் – தேவையான அளவு"
-    ];
-    steps = [
-      "கோதுமை மாவில் உப்பு, தண்ணீர் சேர்த்து கட்டியில்லாமல் கரைத்து, அதில் காய்கறி, வெங்காயம், சீரகம் சேர்க்கவும்.",
-      "தோசைக்கல்லில் மெல்லியதாக ஊற்றி இருபுறமும் பொன்னிறமாக வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("ராகி அடை")) {
-    ingredients = [
-      "ராகி மாவு – 1 கப்",
-      "நறுக்கிய முருங்கைக்கீரை – ½ கப், சின்ன வெங்காயம் – ¼ கப்",
-      "சீரகம் – ½ டீஸ்பூன், உப்பு & வெதுவெதுப்பான நீர் – தேவையான அளவு"
-    ];
-    steps = [
-      "ராகி மாவுடன் முருங்கைக்கீரை, வெங்காயம், சீரகம், உப்பு மற்றும் வெதுவெதுப்பான நீர் சேர்த்து சப்பாத்தி மாவை விட சற்று தளர்வாகப் பிசையவும்.",
-      "வாழை இலை அல்லது ஈரத்துணியில் தட்டி, சூடான தவாவில் போட்டு சில துளிகள் எண்ணெய் விட்டு இருபுறமும் நன்கு வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("தினை அடை")) {
-    ingredients = [
-      "தினை அரிசி – ½ கப், துவரம் பருப்பு & பாசிப்பருப்பு – தலா 2 டேபிள்ஸ்பூன்",
-      "காய்ந்த மிளகாய் – 1, சீரகம் – ½ டீஸ்பூன், முருங்கைக்கீரை – ½ கப், வெங்காயம் – ¼ கப்"
-    ];
-    steps = [
-      "தினை மற்றும் பருப்புகளை 3 மணி நேரம் ஊறவைத்து, காய்ந்த மிளகாய், சீரகம், உப்பு சேர்த்து கொரகொரப்பாக அரைக்கவும்.",
-      "மாவில் நறுக்கிய வெங்காயம் மற்றும் முருங்கைக்கீரை சேர்த்து தவாவில் அடைகளாக ஊற்றி இருபுறமும் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("கம்பு அடை")) {
-    ingredients = [
-      "கம்பு மாவு – 1 கப், முருங்கைக்கீரை – ½ கப்",
-      "நறுக்கிய வெங்காயம் – ¼ கப், சீரகம் – ½ டீஸ்பூன், உப்பு & வெதுவெதுப்பான நீர்"
-    ];
-    steps = [
-      "கம்பு மாவு, கீரை, வெங்காயம், சீரகம், உப்பு ஆகியவற்றை வெதுவெதுப்பான நீர் சேர்த்து பிசையவும்.",
-      "தவாவில் மெல்லிய அடைகளாகத் தட்டி இருபுறமும் நன்கு வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("சாமை தோசை")) {
-    ingredients = ["சாமை அரிசி – 1 கப், உளுத்தம்பருப்பு – ¼ கப், வெந்தயம் – ½ டீஸ்பூன், உப்பு"];
-    steps = [
-      "சாமை, உளுந்து, வெந்தயம் ஆகியவற்றை 4 மணி நேரம் ஊறவைத்து மிருதுவாக அரைத்து 6 மணி நேரம் புளிக்கவிடவும்.",
-      "தோசைக்கல்லில் மெல்லிய தோசைகளாக ஊற்றி வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("குதிரைவாலி தோசை")) {
-    ingredients = ["குதிரைவாலி அரிசி – 1 கப், உளுத்தம்பருப்பு – ¼ கப், வெந்தயம் – ½ டீஸ்பூன், உப்பு"];
-    steps = [
-      "குதிரைவாலி, உளுந்து, வெந்தயத்தை 4 மணி நேரம் ஊறவைத்து அரைத்து 6 மணி நேரம் புளிக்கவிடவும்.",
-      "சூடான தவாவில் தோசைகளாக ஊற்றி இருபுறமும் வேகவைத்து எடுக்கவும்."
-    ];
-  } else if (food.includes("வரகு தோசை")) {
-    ingredients = ["வரகு அரிசி – 1 கப், உளுத்தம்பருப்பு – ¼ கப், வெந்தயம் – ½ டீஸ்பூன், உப்பு"];
-    steps = [
-      "வரகு, உளுந்து, வெந்தயத்தை 4 மணி நேரம் ஊறவைத்து அரைத்து புளிக்கவிடவும்.",
-      "தோசைக்கல்லில் மெல்லியதாக ஊற்றி இருபுறமும் வேகவைத்து எடுக்கவும்."
-    ];
-  }
-
-  if (food.includes("சாம்பார்") || food.includes("குருமா") || food.includes("சட்னி") || food.includes("கடைசல்") || food.includes("பருப்பு") || food.includes("கூட்டு")) {
-    if (food.includes("சாம்பார்")) {
-      ingredients.push("சாம்பாருக்கு: துவரம் பருப்பு (⅓ கப்), கேரட், பீன்ஸ், முருங்கைக்காய், தக்காளி, சாம்பார் தூள், மஞ்சள் தூள், கடுகு, கறிவேப்பிலை");
-      steps.push("சாம்பார் செய்முறை: பருப்பை மஞ்சள் தூள் சேர்த்து குக்கரில் வேகவைத்து மசிக்கவும். காய்கறிகளைத் தக்காளி, சாம்பார் தூள், உப்பு சேர்த்து வேகவைத்து, மசித்த பருப்பு மற்றும் சிறிது புளிக்கரைசல் சேர்த்து கொதிக்கவிட்டு கடுகு, கறிவேப்பிலை தாளிக்கவும்.");
-    } else if (food.includes("குருமா")) {
-      ingredients.push("காய்கறி குருமாவுக்கு: கலவை காய்கறிகள் (கேரட், பீன்ஸ், பட்டாணி, காலிஃபிளவர்) – 1 கப், வெங்காயம், தக்காளி, தேங்காய் + சோம்பு + பொட்டுக்கடலை விழுது – 2 டேபிள்ஸ்பூன்");
-      steps.push("குருமா செய்முறை: வாணலியில் சிறிது எண்ணெய் விட்டு பட்டை, கிராம்பு, வெங்காயம், தக்காளி, காய்கறிகள் வதக்கி உப்பு, மஞ்சள் தூள் சேர்த்து வேகவிடவும். காய்கறிகள் வெந்ததும் அரைத்த தேங்காய் விழுது சேர்த்து 5 நிமிடம் கொதிக்கவிட்டு இறக்கவும்.");
-    } else if (food.includes("தக்காளி சட்னி")) {
-      ingredients.push("தக்காளி சட்னிக்கு: பழுத்த தக்காளி – 2, சின்ன வெங்காயம் – 5, பூண்டு – 2 பல், காய்ந்த மிளகாய் – 1, கடுகு, கறிவேப்பிலை");
-      steps.push("சட்னி செய்முறை: சிறிது எண்ணெயில் வெங்காயம், பூண்டு, தக்காளி, மிளகாய் வதக்கி ஆறியதும் அரைத்து, கடுகு கறிவேப்பிலை தாளிக்கவும்.");
-    } else if (food.includes("காய்கறி சட்னி")) {
-      ingredients.push("காய்கறி சட்னிக்கு: துருவிய கேரட் அல்லது பீர்க்கங்காய் – ½ கப், உளுத்தம்பருப்பு – 1 டேபிள்ஸ்பூன், தேங்காய் – 1 டேபிள்ஸ்பூன், காய்ந்த மிளகாய் – 1");
-      steps.push("சட்னி செய்முறை: உளுத்தம்பருப்பு, மிளகாய், காய்கறியை வதக்கி தேங்காய் மற்றும் உப்பு சேர்த்து அரைத்து தாளிக்கவும்.");
-    } else if (food.includes("கடைசல்") || food.includes("பருப்பு")) {
-      ingredients.push("பருப்பு கடைசலுக்கு: பாசிப்பருப்பு அல்லது துவரம் பருப்பு – ⅓ கப், தக்காளி – 1, பூண்டு – 3 பல், சீரகம், மஞ்சள் தூள், நெய் – ½ டீஸ்பூன்");
-      steps.push("பருப்பு செய்முறை: பருப்புடன் தக்காளி, பூண்டு, மஞ்சள் தூள் சேர்த்து குக்கரில் 3 விசில் வேகவைத்து மசித்து, உப்பு மற்றும் சீரகம் தாளித்துச் சேர்க்கவும்.");
-    } else if (food.includes("காய்கறி கூட்டு")) {
-      ingredients.push("காய்கறி கூட்டுக்கு: சுரைக்காய் அல்லது பூசணிக்காய் – 1 கப், பாசிப்பருப்பு – 2 டேபிள்ஸ்பூன், தேங்காய்-சீரக விழுது – 1 டேபிள்ஸ்பூன்");
-      steps.push("கூட்டு செய்முறை: காய்கறி மற்றும் பாசிப்பருப்பை மஞ்சள் தூள், உப்பு சேர்த்து வேகவைத்து, தேங்காய்-சீரக விழுது சேர்த்து கொதிக்கவிட்டு தாளிக்கவும்.");
-    }
-  }
-
-  if (title.includes("மதிய உணவு")) {
-    ingredients = [];
-    steps = [];
-
-    if (food.includes("புழுங்கல் அரிசி")) {
-      ingredients.push("புழுங்கல் அரிசி – ½ கப் (சமைத்த சாதம் 1 சிறிய கப் மட்டும்)");
-      steps.push("சாதம்: புழுங்கல் அரிசியைக் கழுவி 20 நிமிடம் ஊறவைத்து, தேவையான தண்ணீர் சேர்த்து நன்கு வேகவைத்து வடிக்கவும் (சாதத்தின் அளவை 1 சிறிய கிண்ணமாகக் கட்டுப்படுத்தவும்).");
-    } else if (food.includes("கைக்குத்தல் அரிசி")) {
-      ingredients.push("கைக்குத்தல் அரிசி – ½ கப் (சமைத்த சாதம் 1 சிறிய கப்)");
-      steps.push("சாதம்: கைக்குத்தல் அரிசியை நன்கு கழுவி 45 நிமிடம் ஊறவைத்து, குக்கரில் 1:3 என்ற விகிதத்தில் தண்ணீர் ஊற்றி 4 விசில் வரை நன்கு வேகவைக்கவும்.");
-    } else if (food.includes("சிவப்பு அரிசி")) {
-      ingredients.push("சிவப்பு அரிசி (மாப்பிள்ளை சம்பா / சிவப்பு கவுனி) – ½ கப்");
-      steps.push("சாதம்: சிவப்பு அரிசியை 1 மணி நேரம் ஊறவைத்து, குக்கரில் 1:3.5 தண்ணீர் சேர்த்து 4-5 விசில் வரை மென்மையாக வேகவைக்கவும்.");
-    }
-
-    if (food.includes("முருங்கைக்கீரை") || food.includes("கீரை")) {
-      ingredients.push("சுத்தம் செய்த கீரை (முருங்கைக்கீரை / அரைக்கீரை / சிறுகீரை) – 1 கட்டு, பாசிப்பருப்பு – 2 டேபிள்ஸ்பூன், சின்ன வெங்காயம் – 5, பூண்டு – 3 பல், சீரகம், தேங்காய்த் துருவல் – 1 டேபிள்ஸ்பூன்");
-      steps.push("கீரை செய்முறை: கீரையை நன்கு கழுவி பொடியாக நறுக்கவும். பாசிப்பருப்பை வேகவைத்து அதனுடன் கீரை, வெங்காயம், பூண்டு, மஞ்சள் தூள் சேர்த்து மூடாமல் வேகவைக்கவும். வெந்ததும் உப்பு, சீரகம், தேங்காய் சேர்த்து மசித்து எடுக்கவும்.");
-    }
-
-    if (food.includes("பீன்ஸ்") || food.includes("வெண்டைக்காய்") || food.includes("பீட்ரூட்") || food.includes("கேரட்")) {
-      ingredients.push("நறுக்கிய காய்கறி (பீன்ஸ் / வெண்டைக்காய் / பீட்ரூட் / கேரட்) – 1 கப், கடுகு, உளுந்து, கறிவேப்பிலை, தேங்காய்த் துருவல் – 1 டேபிள்ஸ்பூன், எண்ணெய் – 1 டீஸ்பூன்");
-      steps.push("பொரியல் செய்முறை: வாணலியில் 1 டீஸ்பூன் எண்ணெய் விட்டு கடுகு, உளுந்து, கறிவேப்பிலை தாளித்து நறுக்கிய காய்கறி மற்றும் உப்பு சேர்த்து தண்ணீர் தெளித்து (வெண்டைக்காய்க்கு நீர் தெளிக்க வேண்டாம்) நன்கு வேகவைத்து தேங்காய்த் துருவல் சேர்க்கவும்.");
-    }
-
-    if (food.includes("சுரைக்காய்") || food.includes("பூசணிக்காய்") || food.includes("பீர்க்கங்காய்") || food.includes("காய்கறி கூட்டு")) {
-      ingredients.push("நறுக்கிய காய் (சுரைக்காய் / பூசணிக்காய் / பீர்க்கங்காய்) – 1 கப், பாசிப்பருப்பு – 3 டேபிள்ஸ்பூன், சீரகம் – ½ டீஸ்பூன், தேங்காய் – 1 டேபிள்ஸ்பூன்");
-      steps.push("கூட்டு செய்முறை: காய்கறி மற்றும் பாசிப்பருப்பை மஞ்சள் தூள், உப்பு சேர்த்து குக்கரில் 2 விசில் வேகவைக்கவும். தேங்காய்-சீரகம் அரைத்துச் சேர்த்து 2 நிமிடம் கொதிக்கவிட்டு கடுகு, கறிவேப்பிலை தாளிக்கவும்.");
-    }
-
-    if (food.includes("கத்தரிக்காய் குழம்பு")) {
-      ingredients.push("பிஞ்சு கத்தரிக்காய் – 4, சின்ன வெங்காயம் – 8, தக்காளி – 1, குழம்பு மிளகாய்த்தூள் – 1.5 டீஸ்பூன், சிறிய நெல்லிக்காய் அளவு புளி, நல்லெண்ணெய் – 1.5 டீஸ்பூன்");
-      steps.push("குழம்பு செய்முறை: நல்லெண்ணெயில் கடுகு, வெந்தயம், வெங்காயம், தக்காளி, கத்தரிக்காய் வதக்கி மிளகாய்த்தூள், உப்பு மற்றும் புளிக்கரைசல் சேர்த்து எண்ணெய் பிரியும் வரை கொதிக்கவிடவும்.");
-    }
-
-    if (food.includes("முருங்கைக்காய் சாம்பார்") || food.includes("காய்கறி சாம்பார்")) {
-      ingredients.push("துவரம் பருப்பு – ⅓ கப், முருங்கைக்காய் / கலவை காய்கறிகள் – 1 கப், தக்காளி – 1, சாம்பார் தூள் – 1.5 டீஸ்பூன், சிறிது புளி");
-      steps.push("சாம்பார் செய்முறை: வேகவைத்த பருப்புடன் நறுக்கிய காய்கறிகள், தக்காளி, சாம்பார் தூள், உப்பு மற்றும் புளிக்கரைசல் சேர்த்து நன்கு கொதிக்கவிட்டு தாளிக்கவும்.");
-    }
-
-    if (food.includes("பருப்பு") && !food.includes("சாம்பார்")) {
-      ingredients.push("துவரம் பருப்பு / பாசிப்பருப்பு – ⅓ கப், பூண்டு – 2 பல், சீரகம், மஞ்சள் தூள்");
-      steps.push("பருப்பு: பருப்பை மஞ்சள் தூள், பூண்டு சேர்த்து நன்கு குழைய வேகவைத்து உப்பு மற்றும் சீரகம் தாளித்துச் சேர்க்கவும்.");
-    }
-
-    if (food.includes("முட்டை")) {
-      ingredients.push("முழு முட்டை – 1");
-      steps.push("முட்டை செய்முறை: முட்டையைத் தண்ணீரில் போட்டு 10-12 நிமிடங்கள் முழுமையாக (Hard-boiled) வேகவைத்து, ஓட்டை உரித்து மிளகுத்தூள் தூவி சாப்பிடவும் (அரைவேக்காடு முட்டை தவிர்க்கவும்).");
-    }
-
-    if (food.includes("தயிர்")) {
-      ingredients.push("புதிய கெட்டித் தயிர் – ½ கப்");
-      steps.push("மதிய உணவின் இறுதியில் சிறிதளவு சாதத்துடன் புதிய தயிர் சேர்த்துச் சாப்பிடவும்.");
-    }
-
-    note = "மதிய உணவில் சாதத்தின் அளவைக் குறைத்து (1 சிறிய கப்), காய்கறி மற்றும் கீரையின் அளவை அதிகமாக எடுத்துக்கொள்ளவும்.";
-  }
-
-  return { ingredients, steps, note, swap };
-}
-
-function openRecipe(dayIndex, mealIndex) {
-  const item = days[dayIndex][mealIndex];
-  const time = item[0];
-  const title = item[1];
-  const food = item[2];
-  const details = getRecipeDetails(time, title, food);
-
-  document.getElementById("modalTitle").textContent = `நாள் ${dayIndex + 1} • ${time} (${title})`;
-
-  let ingHtml = details.ingredients.map(i => `<li>${i}</li>`).join("");
-  let stepHtml = details.steps.map(s => `<li>${s}</li>`).join("");
-
-  document.getElementById("modalBody").innerHTML = `
-    <div class="recipe-food-title">🍽️ ${food}</div>
-    <div class="recipe-sec-title">தேவையான பொருட்கள் (1 நபருக்கு)</div>
-    <ul class="recipe-list">${ingHtml}</ul>
-    <div class="recipe-sec-title">செய்முறை விளக்கம்</div>
-    <ol class="recipe-list">${stepHtml}</ol>
-    <div class="swap-box"><b>🔄 மாற்று உணவு (Swap Option):</b> ${details.swap}</div>
-    <div class="recipe-note"><b>💡 கர்ப்பகால ஆலோசனை:</b> ${details.note}</div>
+  return `
+    ${subHeaderHtml}
+    ${symHtml}
+    <div class="recipe-specs">
+      <div class="spec-box"><span>⏱️ தயாரிப்பு</span><b>${recipe.prepTime || "20 நிமிடம்"}</b></div>
+      <div class="spec-box"><span>💧 ஊறவைத்தல்</span><b>${recipe.soakTime || "தேவையில்லை"}</b></div>
+      <div class="spec-box"><span>🍽️ அளவு</span><b>${recipe.serving || "1 நபர்"}</b></div>
+    </div>
+    <div class="recipe-block">
+      <h4>🥗 தேவையான பொருட்கள் (1 நபருக்கு)</h4>
+      <ul>${recipe.ingredients.map(i => `<li>${i}</li>`).join("")}</ul>
+    </div>
+    <div class="recipe-block">
+      <h4>👩‍🍳 செய்முறை</h4>
+      <ol>${recipe.steps.map(s => `<li>${s}</li>`).join("")}</ol>
+    </div>
+    ${recipe.substitutes ? `<div class="sub-box"><b>🔄 மாற்றுப் பொருட்கள் (Substitutes):</b><br>${recipe.substitutes}</div>` : ""}
+    <div class="recipe-safety">
+      <b>🩺 கர்ப்பகால சமையல் குறிப்பு:</b> ${recipe.safety}
+    </div>
   `;
+}
 
+function openRecipeModal(dayIdx, mealIdx) {
+  const meal = days[dayIdx][mealIdx];
+  const mealText = getMealDescription(meal);
+  const recipe = getRecipeForMeal(mealText);
+
+  document.getElementById("modalTitle").textContent = `📖 ${recipe.title}`;
+  const subHeader = `
+    <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">
+      <b>வேளை:</b> ${meal[1]} (${meal[0]}) • <b>உணவு:</b> ${mealText}
+    </div>
+  `;
+  document.getElementById("modalContent").innerHTML = renderRecipeDetailsHtml(recipe, subHeader);
   document.getElementById("recipeModal").classList.add("open");
 }
 
-function closeRecipe() {
-  document.getElementById("recipeModal").classList.remove("open");
+function closeRecipeModal(e) {
+  if (!e || e.target.id === "recipeModal") {
+    document.getElementById("recipeModal").classList.remove("open");
+  }
 }
 
-function closeRecipeOutside(e) {
-  if (e.target.id === "recipeModal") {
-    closeRecipe();
+const days=[
+[
+["7:00 AM","எழுந்ததும்","ஒரு டம்ளர் தண்ணீர்","ஒரு டம்ளர் தண்ணீர்"],
+["7:30 AM","காலை உணவு","ராகி தோசை 2 + சாம்பார்","ராகி தோசை 2 + முட்டை (நன்கு வேகவைத்தது) + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்கீரை + ராஜ்மா கூட்டு + தயிர்","புழுங்கல் அரிசி + முருங்கைக்கீரை + மத்தி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்","கொண்டைக்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","ஒரு டம்ளர் பால்","ஒரு டம்ளர் பால்"],
+["8:00 PM","இரவு உணவு","பலதானிய அடை + பருப்பு கடைசல்","காய்கறி சப்பாத்தி + மிளகு சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","சீரக நீர் (1 டம்ளர்)","சீரக நீர் (1 டம்ளர்)"],
+["7:30 AM","காலை உணவு","கருப்பு உளுந்து கஞ்சி + கம்பு இட்லி 2","கம்பு இட்லி 2 + முட்டை பொரியல் (நன்கு வேகவைத்தது) + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + கீரைக்கூட்டு + பீன்ஸ் பருப்பு உசிலி + தயிர்","கைக்குத்தல் அரிசி + கீரைக்கூட்டு + மத்தி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு கட்லெட் 2 (தோசைக்கல்லில் சுட்டது)","பச்சைப்பயறு சுண்டல் (ஆவியில் வேகவைத்தது)"],
+["6:30 PM","மாலை உணவு","பால் + பாதாம் & வால்நட்","பால் + சிறிது பாதாம்"],
+["8:00 PM","இரவு உணவு","காய்கறி கோதுமை தோசை + சாம்பார்","காய்கறி கோதுமை தோசை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","சிறுதானிய குழிப்பணியாரம் + தேங்காய் சட்னி","தினை பொங்கல் + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + சுரைக்காய் கூட்டு + மொச்சை கூட்டு","புழுங்கல் அரிசி + சுரைக்காய் கூட்டு + முட்டை நன்கு வேகவைத்தது"],
+["4:00 PM","மாலை சிற்றுண்டி","வேர்க்கடலை சுண்டல்","வேர்க்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","சீரக-கறிவேப்பிலை நீர்மோர்","தயிர்"],
+["8:00 PM","இரவு உணவு","ராகி இடியாப்பம் + பாலக் பனீர் கிரேவி","ராகி இடியாப்பம் + காய்கறி சிக்கன் ஸ்டூ (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","அவல் உப்புமா (காய்கறி & வேர்க்கடலை) + தயிர்","சாமை உப்புமா + நன்கு வேகவைத்த முட்டை + தயிர்"],
+["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்","ஒரு வாழைப்பழம்"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + பீன்ஸ் பொரியல் + கொள்ளு கடைசல் + தயிர்","சிவப்பு அரிசி + பீன்ஸ் பொரியல் + நெத்திலி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்","காராமணி சுண்டல்"],
+["6:30 PM","மாலை உணவு","முருங்கைக்கீரை சூப் (1 கப்)","பால்"],
+["8:00 PM","இரவு உணவு","கம்பு தோசை + காய்கறி சாம்பார்","கம்பு தோசை + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","வரகு பொங்கல் + சாம்பார்","வரகு பொங்கல் + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","சிறுதானிய பிசிபேளாபாத் + கீரை மசியல் + தயிர்","புழுங்கல் அரிசி + கீரை மசியல் + ஆட்டுக்கால் சூப் (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","பொட்டுக்கடலை + பழம்","பொட்டுக்கடலை + பழம்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","கோதுமை சப்பாத்தி + சோயா சங்க்ஸ் கூட்டு","கோதுமை சப்பாத்தி + முட்டை பொரியல் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","குதிரைவாலி உப்புமா + தயிர்","குதிரைவாலி உப்புமா + தயிர்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + வெண்டைக்காய் + ராஜ்மா கூட்டு + தயிர்","கைக்குத்தல் அரிசி + வெண்டைக்காய் + மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த சர்க்கரைவள்ளிக் கிழங்கு","வேகவைத்த சர்க்கரைவள்ளிக் கிழங்கு"],
+["6:30 PM","மாலை உணவு","இளநீர்-சப்ஜா பானம்","பால்"],
+["8:00 PM","இரவு உணவு","ராகி அடை + தக்காளி சட்னி","ராகி அடை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","ராகி இட்லி + சாம்பார்","ராகி இட்லி + நன்கு வேகவைத்த முட்டை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு மாதுளை","ஒரு மாதுளை"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்காய் சாம்பார் + கொள்ளு ரசம்","புழுங்கல் அரிசி + முருங்கைக்காய் சாம்பார் + மத்தி மீன் குழம்பு (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்","பச்சைப்பயறு சுண்டல்"],
+["6:30 PM","மாலை உணவு","தயிர்","தயிர்"],
+["8:00 PM","இரவு உணவு","பாசிப்பருப்பு தோசை + காய்கறி சட்னி","சாமை தோசை + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","கம்பு களி + பாசிப்பருப்பு கடைசல்","கம்பு களி + பாசிப்பருப்பு கடைசல்"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + காய்கறி சாம்பார் + மொச்சை கூட்டு + தயிர்","சிவப்பு அரிசி + காய்கறி சாம்பார் + நெத்திலி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை கட்லெட் 2 (தோசைக்கல்லில் சுட்டது)","கொண்டைக்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","2 கோதுமை சப்பாத்தி + பாலக் பனீர் கிரேவி","2 கோதுமை சப்பாத்தி + முட்டை கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","தினை தோசை + சாம்பார்","தினை தோசை + நன்கு வேகவைத்த முட்டை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + கீரை கூட்டு + பீட்ரூட் பொரியல்","கைக்குத்தல் அரிசி + கீரை கூட்டு + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்","காராமணி சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","குதிரைவாலி இடியாப்பம் + காய்கறி குருமா","குதிரைவாலி இடியாப்பம் + காய்கறி சிக்கன் ஸ்டூ (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","வரகு உப்புமா + தயிர்","வரகு உப்புமா + தயிர்"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + பூசணிக்காய் கூட்டு + பருப்பு","புழுங்கல் அரிசி + பூசணிக்காய் கூட்டு + மீன் குழம்பு (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","வேர்க்கடலை சுண்டல்","வேர்க்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","கம்பு தோசை + சாம்பார்","கம்பு தோசை + முட்டை பொரியல் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","குதிரைவாலி பொங்கல் + சாம்பார்","குதிரைவாலி பொங்கல் + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்","ஒரு வாழைப்பழம்"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + கீரை மசியல் + தயிர்","சிவப்பு அரிசி + கீரை மசியல் + ஆட்டுக்கால் சூப் (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","பாசிப்பயறு சுண்டல்","பாசிப்பயறு சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","ராகி தோசை + காய்கறி சாம்பார்","ராகி தோசை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","சாமை இடியாப்பம் + காய்கறி குருமா","சாமை இடியாப்பம் + நன்கு வேகவைத்த முட்டை + குருமா"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்கீரை + பருப்பு + தயிர்","புழுங்கல் அரிசி + முருங்கைக்கீரை + மத்தி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்","கொண்டைக்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","கோதுமை சப்பாத்தி + காய்கறி கூட்டு","கோதுமை சப்பாத்தி + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","சிறுதானிய குழிப்பணியாரம் + தேங்காய் சட்னி","கம்பு இட்லி + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + வெண்டைக்காய் + பருப்பு + தயிர்","கைக்குத்தல் அரிசி + வெண்டைக்காய் + நன்கு வேகவைத்த முட்டை + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்","பச்சைப்பயறு சுண்டல்"],
+["6:30 PM","மாலை உணவு","முருங்கைக்கீரை சூப் (1 கப்)","பால்"],
+["8:00 PM","இரவு உணவு","தினை அடை + தக்காளி சட்னி","தினை அடை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","ராகி களி + பருப்பு கடைசல்","ராகி களி + பாசிப்பருப்பு கடைசல்"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கேரட் பீன்ஸ் பொரியல் + தயிர்","புழுங்கல் அரிசி + கேரட் பீன்ஸ் பொரியல் + நெத்திலி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த கொண்டைக்கடலை","வேகவைத்த கொண்டைக்கடலை"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","சாமை தோசை + சாம்பார்","சாமை தோசை + முட்டை பொரியல் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","வரகு இட்லி + சாம்பார்","வரகு இட்லி + நன்கு வேகவைத்த முட்டை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + கீரை + பருப்பு + தயிர்","சிவப்பு அரிசி + கீரை + சிக்கன் கிரேவி (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்","காராமணி சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","2 கோதுமை தோசை + காய்கறி சட்னி","2 கோதுமை தோசை + காய்கறி சட்னி"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","குதிரைவாலி உப்புமா + தயிர்","குதிரைவாலி உப்புமா + தயிர்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + சுரைக்காய் கூட்டு + பருப்பு","கைக்குத்தல் அரிசி + சுரைக்காய் கூட்டு + மீன் குழம்பு (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","பொட்டுக்கடலை + பழம்","பொட்டுக்கடலை + பழம்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","கம்பு அடை + சாம்பார்","கம்பு அடை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","தினை பொங்கல் + சாம்பார்","தினை பொங்கல் + நன்கு வேகவைத்த முட்டை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கத்தரிக்காய் குழம்பு + கீரை","புழுங்கல் அரிசி + கத்தரிக்காய் குழம்பு + கீரை + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்","பச்சைப்பயறு சுண்டல்"],
+["6:30 PM","மாலை உணவு","தயிர்","தயிர்"],
+["8:00 PM","இரவு உணவு","ராகி தோசை + காய்கறி சாம்பார்","ராகி தோசை + காய்கறி சாம்பார்"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","சாமை பொங்கல் + சாம்பார்","சாமை பொங்கல் + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்","ஒரு வாழைப்பழம்"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + பீன்ஸ் பொரியல் + பருப்பு","சிவப்பு அரிசி + பீன்ஸ் பொரியல் + மத்தி மீன் குழம்பு (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்","கொண்டைக்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","குதிரைவாலி தோசை + சாம்பார்","குதிரைவாலி தோசை + முட்டை பொரியல் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","கம்பு தோசை + சாம்பார்","கம்பு தோசை + நன்கு வேகவைத்த முட்டை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்கீரை + பருப்பு + தயிர்","புழுங்கல் அரிசி + முருங்கைக்கீரை + ஆட்டுக்கால் சூப் (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த கடலை","வேகவைத்த கடலை"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","கோதுமை சப்பாத்தி + காய்கறி கூட்டு","கோதுமை சப்பாத்தி + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","ராகி இடியாப்பம் + காய்கறி குருமா","ராகி இடியாப்பம் + காய்கறி சிக்கன் ஸ்டூ (நன்கு வேகவைத்தது)"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + பூசணிக்காய் கூட்டு + தயிர்","கைக்குத்தல் அரிசி + பூசணிக்காய் கூட்டு + நெத்திலி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்","காராமணி சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","வரகு தோசை + சாம்பார்","வரகு தோசை + முட்டை பொரியல் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","குதிரைவாலி பொங்கல் + சாம்பார்","குதிரைவாலி பொங்கல் + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கீரை மசியல் + பருப்பு","புழுங்கல் அரிசி + கீரை மசியல் + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்","பச்சைப்பயறு சுண்டல்"],
+["6:30 PM","மாலை உணவு","தயிர்","தயிர்"],
+["8:00 PM","இரவு உணவு","கம்பு அடை + காய்கறி சட்னி","கம்பு அடை + நன்கு வேகவைத்த முட்டை + சட்னி"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","சாமை உப்புமா + தயிர்","சாமை உப்புமா + நன்கு வேகவைத்த முட்டை + தயிர்"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + வெண்டைக்காய் + பருப்பு","சிவப்பு அரிசி + வெண்டைக்காய் + மீன் குழம்பு (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்","கொண்டைக்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","ராகி தோசை + சாம்பார்","ராகி தோசை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","வரகு பொங்கல் + சாம்பார்","வரகு பொங்கல் + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + பீர்க்கங்காய் கூட்டு + தயிர்","கைக்குத்தல் அரிசி + பீர்க்கங்காய் கூட்டு + மத்தி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","வேர்க்கடலை சுண்டல்","வேர்க்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","தினை தோசை + சாம்பார்","தினை தோசை + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","கம்பு இட்லி + சாம்பார்","கம்பு இட்லி + நன்கு வேகவைத்த முட்டை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + காய்கறி கூட்டு + பருப்பு + தயிர்","புழுங்கல் அரிசி + காய்கறி கூட்டு + ஆட்டுக்கால் சூப் (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","பாசிப்பயறு சுண்டல்","பாசிப்பயறு சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","குதிரைவாலி உப்புமா + காய்கறி","குதிரைவாலி உப்புமா + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","ராகி தோசை + சாம்பார்","ராகி தோசை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு வாழைப்பழம்","ஒரு வாழைப்பழம்"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + முருங்கைக்கீரை + பருப்பு + தயிர்","சிவப்பு அரிசி + முருங்கைக்கீரை + நெத்திலி மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்","காராமணி சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","சாமை இடியாப்பம் + காய்கறி குருமா","சாமை இடியாப்பம் + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","தினை உப்புமா + தயிர்","தினை உப்புமா + நன்கு வேகவைத்த முட்டை + தயிர்"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + கீரை + பருப்பு + தயிர்","புழுங்கல் அரிசி + கீரை + மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்","கொண்டைக்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","கம்பு தோசை + காய்கறி சாம்பார்","கம்பு தோசை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","வரகு உப்புமா + தயிர்","வரகு உப்புமா + தயிர்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","கைக்குத்தல் அரிசி + கேரட் பீன்ஸ் + பருப்பு","கைக்குத்தல் அரிசி + கேரட் பீன்ஸ் + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"],
+["4:00 PM","மாலை சிற்றுண்டி","பச்சைப்பயறு சுண்டல்","பச்சைப்பயறு சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","ராகி அடை + சாம்பார்","ராகி அடை + நன்கு வேகவைத்த முட்டை + சாம்பார்"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","குதிரைவாலி இடியாப்பம் + காய்கறி குருமா","குதிரைவாலி இடியாப்பம் + காய்கறி சிக்கன் ஸ்டூ (நன்கு வேகவைத்தது)"],
+["10:00 AM","இடைவேளை","ஒரு கொய்யாப்பழம்","ஒரு கொய்யாப்பழம்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + முருங்கைக்காய் சாம்பார் + முட்டை நன்கு வேகவைத்தது","புழுங்கல் அரிசி + முருங்கைக்காய் சாம்பார் + மத்தி மீன் குழம்பு + முட்டை நன்கு வேகவைத்தது"],
+["4:00 PM","மாலை சிற்றுண்டி","வேகவைத்த கொண்டைக்கடலை","வேகவைத்த கொண்டைக்கடலை"],
+["6:30 PM","மாலை உணவு","தயிர்","தயிர்"],
+["8:00 PM","இரவு உணவு","கம்பு தோசை + சாம்பார்","கம்பு தோசை + சிக்கன் சூப் (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","சாமை பொங்கல் + சாம்பார்","சாமை பொங்கல் + நன்கு வேகவைத்த முட்டை + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆரஞ்சு","ஒரு ஆரஞ்சு"],
+["1:00 PM","மதிய உணவு","சிவப்பு அரிசி + கீரை கூட்டு + பருப்பு + தயிர்","சிவப்பு அரிசி + கீரை கூட்டு + மீன் குழம்பு (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","காராமணி சுண்டல்","காராமணி சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","தினை தோசை + காய்கறி சட்னி","தினை தோசை + சிக்கன் கிரேவி (நன்கு வேகவைத்தது)"]
+],
+[
+["7:00 AM","எழுந்ததும்","தண்ணீர்","தண்ணீர்"],
+["7:30 AM","காலை உணவு","ராகி இட்லி + சாம்பார்","ராகி இட்லி + சாம்பார்"],
+["10:00 AM","இடைவேளை","ஒரு ஆப்பிள்","ஒரு ஆப்பிள்"],
+["1:00 PM","மதிய உணவு","புழுங்கல் அரிசி + பீன்ஸ் பொரியல் + பருப்பு + தயிர்","புழுங்கல் அரிசி + பீன்ஸ் பொரியல் + சிக்கன் கிரேவி (நன்கு வேகவைத்தது) + தயிர்"],
+["4:00 PM","மாலை சிற்றுண்டி","கொண்டைக்கடலை சுண்டல்","கொண்டைக்கடலை சுண்டல்"],
+["6:30 PM","மாலை உணவு","பால்","பால்"],
+["8:00 PM","இரவு உணவு","வரகு தோசை + சாம்பார்","வரகு தோசை + நன்கு வேகவைத்த முட்டை + சாம்பார்"]
+]
+];
+
+let prefMode = "all";
+let mealDoneLog = JSON.parse(localStorage.getItem("preg_meal_done") || "{}");
+
+function isMealDone(dayIdx, mealIdx) {
+  return !!(mealDoneLog[`${dayIdx}_${mealIdx}`]);
+}
+
+function toggleMealDone(dayIdx, mealIdx) {
+  const key = `${dayIdx}_${mealIdx}`;
+  if (mealDoneLog[key]) {
+    delete mealDoneLog[key];
+  } else {
+    mealDoneLog[key] = true;
   }
+  localStorage.setItem("preg_meal_done", JSON.stringify(mealDoneLog));
+  renderDay(dayIdx);
+}
+
+function getMealDescription(meal) {
+  const vegText = meal[2];
+  const nonVegText = meal[3] || meal[2];
+  if (prefMode === "veg") return vegText;
+  if (prefMode === "nonveg") return nonVegText;
+  if (vegText === nonVegText) return vegText;
+  return `சைவம்: ${vegText} • அசைவம்: ${nonVegText}`;
+}
+
+function setPrefMode(mode) {
+  prefMode = mode;
+  document.getElementById("btnPrefAll").className = mode === "all" ? "" : "secondary";
+  document.getElementById("btnPrefVeg").className = mode === "veg" ? "" : "secondary";
+  document.getElementById("btnPrefNonVeg").className = mode === "nonveg" ? "" : "secondary";
+  renderDay(Number(select.value));
+  renderGrocery();
+}
+
+function getMealPrepAdvice(index) {
+  const nextDayIdx = (index + 1) % 30;
+  const nextDayMeals = days[nextDayIdx].map(m => getMealDescription(m)).join(" ");
+  const soakItems = [];
+  if (nextDayMeals.includes("இட்லி") || nextDayMeals.includes("குழிப்பணியாரம்")) soakItems.push("சிறுதானியம், அரிசி & உளுந்து (மாவுக்கு)");
+  if (nextDayMeals.includes("கொண்டைக்கடலை")) soakItems.push("கொண்டைக்கடலை");
+  if (nextDayMeals.includes("பச்சைப்பயறு")) soakItems.push("பச்சைப்பயறு");
+  if (nextDayMeals.includes("காராமணி")) soakItems.push("காராமணி");
+  if (nextDayMeals.includes("ராஜ்மா")) soakItems.push("ராஜ்மா");
+  if (nextDayMeals.includes("மொச்சை")) soakItems.push("மொச்சை");
+  if (nextDayMeals.includes("கொள்ளு")) soakItems.push("கொள்ளு");
+  if (nextDayMeals.includes("கருப்பு உளுந்து")) soakItems.push("கருப்பு உளுந்து");
+  if (nextDayMeals.includes("பாதாம்")) soakItems.push("பாதாம் (4–5)");
+
+  const listText = soakItems.length
+    ? soakItems.join(", ")
+    : "பாதாம் (4–5) மற்றும் அடுத்த நாளுக்கான சிறுதானியம் / பருப்பு வகைகள்";
+
+  return `
+    <div class="prep-card">
+      <h3>🌙 இன்றிரவு முன் தயாரிப்பு (நாள் ${nextDayIdx + 1}-க்காக)</h3>
+      <p><b>இரவே ஊறவைக்க வேண்டியவை:</b> ${listText} ஆகியவற்றை சுத்தமாகக் கழுவி 6–8 மணி நேரம் ஊறவைத்தால் நாளை சமைப்பது எளிதாக இருக்கும்.</p>
+    </div>
+  `;
 }
 
 const select=document.getElementById("daySelect");
@@ -1359,35 +1361,60 @@ option.textContent="நாள் "+i;
 select.appendChild(option);
 }
 
+function updateTopReminderBanner(index) {
+  const reminderText = dailyReminders[index] || dailyReminders[0];
+  const startKey = ensureStartDate();
+  const autoIdx = getAutoDayIndex();
+
+  document.getElementById("topReminderDayBadge").textContent = `💚 நாள் ${index + 1} / 30 • இன்றைய நினைவூட்டல்`;
+  document.getElementById("topStartDateText").textContent = `தொடங்கிய நாள்: ${startKey}`;
+  document.getElementById("topReminderHeading").textContent = `நாள் ${index + 1} இன்றைய நினைவூட்டல்`;
+  document.getElementById("topReminderText").textContent = reminderText;
+
+  document.getElementById("autoDayStatusText").textContent =
+    `இன்றைய தானியங்கி நாள்: நாள் ${autoIdx + 1} (தொடங்கிய நாள்: ${startKey})`;
+}
+
 function renderDay(index){
 const day=days[index];
-const todayIdx = getTodayDayIndex();
-const tagLabel = (todayIdx !== null && todayIdx === index) ? "⭐ இன்றைய உணவு" : "உணவைத் தொட்டால் செய்முறை";
+const modeLabel = prefMode === "veg" ? "சைவம்" : (prefMode === "nonveg" ? "அசைவம்" : "சைவம் & அசைவம்");
+
+updateTopReminderBanner(index);
+document.getElementById("mealPrepContainer").innerHTML = getMealPrepAdvice(index);
 
 let html=`
 <div class="day-title">
-<h2>நாள் ${index+1}</h2>
-<span class="tag">${tagLabel}</span>
+<h2>நாள் ${index+1} / 30</h2>
+<span class="tag">${modeLabel} • உணவு அட்டவணை</span>
 </div>
 <div class="walk">
-<h3>🚶 காலை நடைப்பயிற்சி – 6:45 AM</h3>
+<div class="walk-icon">🚶</div>
+<div>
+<h3>காலை நடைப்பயிற்சி – 6:45 AM</h3>
 <p>மருத்துவர் அனுமதி இருந்தால் மட்டும் 10–15 நிமிடங்கள் மெதுவாக நடக்கவும்.</p>
+</div>
 </div>
 `;
 
 const icons=["💧","🍽️","🍎","🥗","🥜","🥛","🍲"];
 
 day.forEach((item,i)=>{
+const done = isMealDone(index, i);
 html+=`
-<div class="meal" onclick="openRecipe(${index}, ${i})">
-<div class="emoji">${icons[i]}</div>
-<div class="time">${item[0]}</div>
-<div class="meal-content">
-<div class="meal-header">
+<div class="meal ${done ? "done" : ""}">
+<div class="meal-icon-box">${icons[i]}</div>
+<div class="meal-body">
+<div class="meal-top">
 <h3>${item[1]}</h3>
-<span class="recipe-hint">செய்முறை & மாற்று ›</span>
+<div class="meal-right-meta">
+<span class="time-badge">${item[0]}</span>
+<input type="checkbox" class="done-check" title="முடிந்தது" ${done ? "checked" : ""} onchange="toggleMealDone(${index}, ${i})">
 </div>
-<p>${item[2]}</p>
+</div>
+<p>${getMealDescription(item)}</p>
+<div class="meal-btn-row">
+<button class="recipe-btn" onclick="openRecipeModal(${index}, ${i})">📖 செய்முறை & மாற்றுப் பொருள்</button>
+</div>
 </div>
 </div>
 `;
@@ -1395,13 +1422,11 @@ html+=`
 
 html+=`
 <div class="walk">
-<h3>🚶 மாலை நடைப்பயிற்சி – 5:30 PM</h3>
+<div class="walk-icon">🚶</div>
+<div>
+<h3>மாலை நடைப்பயிற்சி – 5:30 PM</h3>
 <p>மருத்துவர் அனுமதி இருந்தால் மட்டும் வசதியான வேகத்தில் நடக்கவும். சோர்வாக இருந்தால் ஓய்வெடுக்கவும்.</p>
 </div>
-<div class="tip">
-<h3>💚 இன்றைய நினைவூட்டல்</h3>
-பசி ஏற்பட்டால் உணவைத் தவிர்க்காமல் பழம், தயிர், பால் அல்லது
-வேகவைத்த பயறு போன்ற சத்தான சிற்றுண்டியைச் சேர்த்துக்கொள்ளலாம்.
 </div>
 `;
 document.getElementById("schedule").innerHTML=html;
@@ -1413,19 +1438,190 @@ if(next<0)next=0;
 if(next>29)next=29;
 select.value=next;
 renderDay(next);
+renderGrocery();
 }
 
-select.addEventListener("change",()=>renderDay(Number(select.value)));
+select.addEventListener("change",()=>{
+renderDay(Number(select.value));
+renderGrocery();
+});
 
-// Initialize with today's day if start date is saved, otherwise Day 1
-const initialDay = getTodayDayIndex();
-if (initialDay !== null) {
-  select.value = initialDay;
-  renderDay(initialDay);
-} else {
-  renderDay(0);
+let currentTab = "diet";
+let groceryMode = "day";
+let checkedItems = JSON.parse(localStorage.getItem("preg_grocery_checked") || "{}");
+
+const ingredientRules = [
+  { key: "ராகி", label: "ராகி மாவு / ராகி", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "கம்பு", label: "கம்பு / கம்பு மாவு", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "தினை", label: "தினை அரிசி / தினை மாவு", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "சாமை", label: "சாமை அரிசி / சாமை மாவு", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "வரகு", label: "வரகு அரிசி / வரகு மாவு", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "குதிரைவாலி", label: "குதிரைவாலி அரிசி / மாவு", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "சிறுதானிய", label: "சிறுதானிய மாவு", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "புழுங்கல் அரிசி", label: "புழுங்கல் அரிசி", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "கைக்குத்தல் அரிசி", label: "கைக்குத்தல் அரிசி", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "சிவப்பு அரிசி", label: "சிவப்பு அரிசி", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "அவல்", label: "அவல்", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "கோதுமை", label: "கோதுமை மாவு", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+  { key: "சப்பாத்தி", label: "கோதுமை மாவு (சப்பாத்தி)", cat: "🌾 சிறுதானியங்கள் & அரிசி" },
+
+  { key: "கருப்பு உளுந்து", label: "கருப்பு உளுந்து", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "ராஜ்மா", label: "ராஜ்மா", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "மொச்சை", label: "மொச்சை", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "கொள்ளு", label: "கொள்ளு", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "சோயா சங்க்ஸ்", label: "சோயா சங்க்ஸ்", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "பருப்பு", label: "துவரம் / பாசிப் பருப்பு", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "சாம்பார்", label: "சாம்பார் பருப்பு & மசாலா", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "கொண்டைக்கடலை", label: "கொண்டைக்கடலை", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "பச்சைப்பயறு", label: "பச்சைப்பயறு", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "பாசிப்பயறு", label: "பாசிப்பயறு", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "வேர்க்கடலை", label: "வேர்க்கடலை", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "கடலை", label: "வேர்க்கடலை / கொண்டைக்கடலை", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "காராமணி", label: "காராமணி", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "பொட்டுக்கடலை", label: "பொட்டுக்கடலை", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "பாதாம்", label: "பாதாம்", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+  { key: "வால்நட்", label: "வால்நட்", cat: "🫘 பயறு, பருப்பு & நட்ஸ்" },
+
+  { key: "முருங்கைக்கீரை", label: "முருங்கைக்கீரை", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "பாலக்", label: "பாலக்கீரை", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "கீரை", label: "பசலை / அரைக் கீரை", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "பீன்ஸ்", label: "பீன்ஸ்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "கேரட்", label: "கேரட்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "சுரைக்காய்", label: "சுரைக்காய்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "வெண்டைக்காய்", label: "வெண்டைக்காய்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "முருங்கைக்காய்", label: "முருங்கைக்காய்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "பீட்ரூட்", label: "பீட்ரூட்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "பூசணிக்காய்", label: "பூசணிக்காய்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "கத்தரிக்காய்", label: "கத்தரிக்காய்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "பீர்க்கங்காய்", label: "பீர்க்கங்காய்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "சர்க்கரைவள்ளிக் கிழங்கு", label: "சர்க்கரைவள்ளிக் கிழங்கு", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "தக்காளி", label: "தக்காளி & வெங்காயம்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+  { key: "காய்கறி", label: "கலவை காய்கறிகள்", cat: "🥬 காய்கறிகள் & கீரைகள்" },
+
+  { key: "கொய்யாப்பழம்", label: "கொய்யாப்பழம்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "ஆப்பிள்", label: "ஆப்பிள்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "ஆரஞ்சு", label: "ஆரஞ்சு", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "வாழைப்பழம்", label: "வாழைப்பழம்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "மாதுளை", label: "மாதுளை", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "பழம்", label: "பருவகால பழங்கள்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "பால்", label: "பால்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "தயிர்", label: "தயிர்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "மோர்", label: "தயிர் (நீர்மோருக்கு)", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "பனீர்", label: "பனீர்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "முட்டை", label: "முட்டை", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "சிக்கன்", label: "சிக்கன் (நன்கு வேகவைக்க)", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "மீன்", label: "மீன் (மத்தி / நெத்திலி)", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" },
+  { key: "ஆட்டுக்கால்", label: "ஆட்டுக்கால் / மட்டன்", cat: "🍎 பழங்கள், பால், பனீர் & புரதம்" }
+];
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById("dietView").style.display = tab === "diet" ? "block" : "none";
+  document.getElementById("groceryView").style.display = tab === "grocery" ? "block" : "none";
+
+  document.getElementById("tabDiet").className = tab === "diet" ? "active" : "inactive";
+  document.getElementById("tabGrocery").className = tab === "grocery" ? "active" : "inactive";
+
+  if (tab === "grocery") renderGrocery();
 }
-updateStartInfo();
+
+function setGroceryMode(mode) {
+  groceryMode = mode;
+  document.getElementById("btnRangeDay").className = mode === "day" ? "" : "secondary";
+  document.getElementById("btnRangeWeek").className = mode === "week" ? "" : "secondary";
+  renderGrocery();
+}
+
+function extractGroceries() {
+  const startIdx = Number(select.value);
+  const endIdx = groceryMode === "day" ? startIdx : Math.min(startIdx + 6, 29);
+  const grouped = {};
+
+  for (let d = startIdx; d <= endIdx; d++) {
+    days[d].forEach(meal => {
+      const text = getMealDescription(meal);
+      ingredientRules.forEach(rule => {
+        if (text.includes(rule.key)) {
+          if (!grouped[rule.cat]) grouped[rule.cat] = new Set();
+          grouped[rule.cat].add(rule.label);
+        }
+      });
+    });
+  }
+  return { grouped, startIdx, endIdx };
+}
+
+function renderGrocery() {
+  const { grouped, startIdx, endIdx } = extractGroceries();
+  document.getElementById("groceryRangeTag").textContent =
+    groceryMode === "day" ? `நாள் ${startIdx + 1}` : `நாள் ${startIdx + 1} – ${endIdx + 1}`;
+
+  const container = document.getElementById("groceryListContainer");
+  let html = "";
+
+  Object.keys(grouped).forEach(cat => {
+    html += `<div class="grocery-group"><h3>${cat}</h3>`;
+    grouped[cat].forEach(item => {
+      const isChecked = !!checkedItems[item];
+      const safeItem = item.replace(/'/g, "\\'");
+      html += `
+        <label class="grocery-item ${isChecked ? "checked" : ""}">
+          <input type="checkbox" ${isChecked ? "checked" : ""} onchange="toggleGroceryItem('${safeItem}')">
+          <span>${item}</span>
+        </label>
+      `;
+    });
+    html += `</div>`;
+  });
+
+  container.innerHTML = html || `<div class="tip">பட்டியல் காலியாக உள்ளது.</div>`;
+}
+
+function toggleGroceryItem(item) {
+  if (checkedItems[item]) {
+    delete checkedItems[item];
+  } else {
+    checkedItems[item] = true;
+  }
+  localStorage.setItem("preg_grocery_checked", JSON.stringify(checkedItems));
+  renderGrocery();
+}
+
+function clearCheckedGroceries() {
+  checkedItems = {};
+  localStorage.removeItem("preg_grocery_checked");
+  renderGrocery();
+}
+
+function copyGroceryList() {
+  const { grouped, startIdx, endIdx } = extractGroceries();
+  const title = groceryMode === "day"
+    ? `🛒 மளிகைப் பட்டியல் (நாள் ${startIdx + 1})`
+    : `🛒 மளிகைப் பட்டியல் (நாள் ${startIdx + 1} – ${endIdx + 1})`;
+  let lines = [title, ""];
+
+  Object.keys(grouped).forEach(cat => {
+    lines.push(cat);
+    grouped[cat].forEach(item => {
+      const mark = checkedItems[item] ? "✅" : "⬜";
+      lines.push(`${mark} ${item}`);
+    });
+    lines.push("");
+  });
+
+  const finalText = lines.join("\n").trim();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(finalText).then(() => {
+      const msg = document.getElementById("copyStatus");
+      msg.textContent = "பட்டியல் நகலெடுக்கப்பட்டது! வாட்ஸ்அப்பில் பேஸ்ட் செய்யலாம்.";
+      setTimeout(() => { msg.textContent = ""; }, 3000);
+    });
+  }
+}
+
+const initialAutoDay = getAutoDayIndex();
+select.value = initialAutoDay;
+renderDay(initialAutoDay);
 </script>
 </body>
 </html>
